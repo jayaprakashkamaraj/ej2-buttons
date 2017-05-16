@@ -1,5 +1,5 @@
 import { Button } from '../src/button/button';
-import { createElement } from '@syncfusion/ej2-base/dom';
+import { createElement, detach } from '@syncfusion/ej2-base/dom';
 /**
  * @param  {} 'Button'
  * @param  {} function(
@@ -229,7 +229,7 @@ describe('Button', () => {
             button.element.textContent = 'Button';
             button = new Button({ iconCss: 'iconcss' });
             button.appendTo('#button');
-            button.element.getElementsByTagName('span')[0].remove();
+            detach(button.element.getElementsByTagName('span')[0]);
             button.iconPosition = 'right';
             button.dataBind();
             expect(element.children[0].classList.contains('iconcss')).toEqual(true);

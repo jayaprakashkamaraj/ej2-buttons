@@ -197,7 +197,7 @@ define(["require", "exports", "../src/button/button", "@syncfusion/ej2-base/dom"
                 button.element.textContent = 'Button';
                 button = new button_1.Button({ iconCss: 'iconcss' });
                 button.appendTo('#button');
-                button.element.getElementsByTagName('span')[0].remove();
+                dom_1.detach(button.element.getElementsByTagName('span')[0]);
                 button.iconPosition = 'right';
                 button.dataBind();
                 expect(element.children[0].classList.contains('iconcss')).toEqual(true);

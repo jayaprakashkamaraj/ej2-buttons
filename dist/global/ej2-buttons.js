@@ -1576,8 +1576,9 @@ var Browser = (function () {
                     browserInfo.name = 'msie';
                     break;
                 }
-                if (browserInfo.name === 'safari') {
-                    browserInfo.version = Browser.userAgent.match(REGX_VERSION)[2];
+                var version = Browser.userAgent.match(REGX_VERSION);
+                if (browserInfo.name === 'safari' && version) {
+                    browserInfo.version = version[2];
                 }
                 break;
             }
@@ -2830,7 +2831,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
             }
             span = element.querySelector('span.e-btn-icon');
             if (span) {
-                span.remove();
+                dom_1.detach(span);
             }
             this.unWireEvents();
         };
@@ -2875,7 +2876,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
                     case 'iconPosition':
                         span = this.element.querySelector('span.e-btn-icon');
                         if (span) {
-                            span.remove();
+                            dom_1.detach(span);
                         }
                         this.setIconCss();
                         break;

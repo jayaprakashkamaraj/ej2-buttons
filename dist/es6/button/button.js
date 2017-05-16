@@ -16,7 +16,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Property, NotifyPropertyChanges, Component } from '@syncfusion/ej2-base';
 import { CreateBuilder, ripple, EventHandler } from '@syncfusion/ej2-base';
-import { createElement, addClass, removeClass, attributes } from '@syncfusion/ej2-base/dom';
+import { createElement, addClass, removeClass, attributes, detach } from '@syncfusion/ej2-base/dom';
 var cssClassName = {
     RTL: 'e-rtl',
     BUTTON: 'e-btn',
@@ -108,7 +108,7 @@ var Button = (function (_super) {
         }
         span = element.querySelector('span.e-btn-icon');
         if (span) {
-            span.remove();
+            detach(span);
         }
         this.unWireEvents();
     };
@@ -153,7 +153,7 @@ var Button = (function (_super) {
                 case 'iconPosition':
                     span = this.element.querySelector('span.e-btn-icon');
                     if (span) {
-                        span.remove();
+                        detach(span);
                     }
                     this.setIconCss();
                     break;

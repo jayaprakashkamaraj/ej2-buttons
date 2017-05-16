@@ -1,4 +1,4 @@
-import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';import { CreateBuilder, ripple, EventHandler } from '@syncfusion/ej2-base';import { createElement, addClass, removeClass, attributes } from '@syncfusion/ej2-base/dom';import { ButtonHelper } from './button-builder';
+import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';import { CreateBuilder, ripple, EventHandler } from '@syncfusion/ej2-base';import { createElement, addClass, removeClass, attributes, detach } from '@syncfusion/ej2-base/dom';import { ButtonHelper } from './button-builder';
 import {IconPosition} from "./button";
 import {ComponentModel} from '@syncfusion/ej2-base';
 

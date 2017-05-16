@@ -108,7 +108,7 @@ define(["require", "exports", "@syncfusion/ej2-base", "@syncfusion/ej2-base", "@
             }
             span = element.querySelector('span.e-btn-icon');
             if (span) {
-                span.remove();
+                dom_1.detach(span);
             }
             this.unWireEvents();
         };
@@ -153,7 +153,7 @@ define(["require", "exports", "@syncfusion/ej2-base", "@syncfusion/ej2-base", "@
                     case 'iconPosition':
                         span = this.element.querySelector('span.e-btn-icon');
                         if (span) {
-                            span.remove();
+                            dom_1.detach(span);
                         }
                         this.setIconCss();
                         break;

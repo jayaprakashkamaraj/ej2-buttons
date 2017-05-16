@@ -1,6 +1,6 @@
 import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';
 import { CreateBuilder, ripple, EventHandler } from '@syncfusion/ej2-base';
-import { createElement, addClass, removeClass, attributes } from '@syncfusion/ej2-base/dom';
+import { createElement, addClass, removeClass, attributes, detach } from '@syncfusion/ej2-base/dom';
 import { ButtonModel } from './button-model';
 import { ButtonHelper } from './button-builder';
 export type IconPosition = 'left' | 'right';
@@ -183,7 +183,7 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
         }
         span = element.querySelector('span.e-btn-icon');
         if (span) {
-            span.remove();
+            detach(span);
         }
         this.unWireEvents();
     }
@@ -243,7 +243,7 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
                 case 'iconPosition':
                     span = this.element.querySelector('span.e-btn-icon');
                     if (span) {
-                        span.remove();
+                        detach(span);
                     }
                     this.setIconCss();
                     break;
