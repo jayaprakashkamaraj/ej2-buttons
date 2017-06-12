@@ -1,6 +1,6 @@
 # Button
 
-Provides several built-in styles to customize the appearance and behaviour of buttons. It comes with full documentation and support and is available under commercial and community licenses – please visit www.syncfusion.com to get started.
+Provides several built-in styles to customize the appearance and behaviour of buttons.
 
 ## Resources
 
