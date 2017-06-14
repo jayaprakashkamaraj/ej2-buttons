@@ -1576,9 +1576,8 @@ var Browser = (function () {
                     browserInfo.name = 'msie';
                     break;
                 }
-                var version = Browser.userAgent.match(REGX_VERSION);
-                if (browserInfo.name === 'safari' && version) {
-                    browserInfo.version = version[2];
+                if (browserInfo.name === 'safari') {
+                    browserInfo.version = Browser.userAgent.match(REGX_VERSION)[2];
                 }
                 break;
             }
@@ -2822,7 +2821,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
             var element = this.element;
             _super.prototype.destroy.call(this);
             dom_1.removeClass([this.element], [cssClassName.PRIMARY, cssClassName.RTL, 'e-success',
-                'e-info', 'e-danger', 'e-warning', 'e-flat', 'e-outline', 'e-small', 'e-bigger', 'e-active']);
+                'e-info', 'e-danger', 'e-warning', 'e-flat', 'e-outline', 'e-small', 'e-bigger', 'e-active', 'e-round']);
             ['role', 'aria-describedby', 'e-ripple', 'disabled'].forEach(function (value) {
                 element.removeAttribute(value);
             });

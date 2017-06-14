@@ -99,7 +99,7 @@ var Button = (function (_super) {
         var element = this.element;
         _super.prototype.destroy.call(this);
         removeClass([this.element], [cssClassName.PRIMARY, cssClassName.RTL, 'e-success',
-            'e-info', 'e-danger', 'e-warning', 'e-flat', 'e-outline', 'e-small', 'e-bigger', 'e-active']);
+            'e-info', 'e-danger', 'e-warning', 'e-flat', 'e-outline', 'e-small', 'e-bigger', 'e-active', 'e-round']);
         ['role', 'aria-describedby', 'e-ripple', 'disabled'].forEach(function (value) {
             element.removeAttribute(value);
         });

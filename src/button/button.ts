@@ -174,7 +174,7 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
         let element: Element = this.element;
         super.destroy();
         removeClass([this.element], [cssClassName.PRIMARY, cssClassName.RTL, 'e-success',
-            'e-info', 'e-danger', 'e-warning', 'e-flat', 'e-outline', 'e-small', 'e-bigger', 'e-active']);
+            'e-info', 'e-danger', 'e-warning', 'e-flat', 'e-outline', 'e-small', 'e-bigger', 'e-active', 'e-round' ]);
         ['role', 'aria-describedby', 'e-ripple', 'disabled'].forEach((value: string): void => {
             element.removeAttribute(value);
         });
