@@ -19,6 +19,12 @@
         cursor: default;
       }
 
+      // sass-lint:disable no-vendor-prefixes
+      &::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+      }
+
       & .e-btn-icon {
         display: inline-block;
         font-size: 11px;
