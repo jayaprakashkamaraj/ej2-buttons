@@ -49,7 +49,7 @@ When set to `right` the icon will be positioned right to text content.
 	*/
 	isToggle(value:boolean): BuilderProperties;
 	/**
-	* Overrides the global culture and localization value for this component.
+	* Overrides the global culture and localization value for this component. Default Global culture is 'en-US'
 	*/
 	locale(value:string): BuilderProperties;
 }
