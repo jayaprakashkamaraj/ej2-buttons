@@ -1,10 +1,12 @@
-# [Unreleased]
+# Changelog
 
-# 1.0.10-preview (2017-07-05)
+## [Unreleased]
 
-## Button
+## 1.0.10-preview (2017-07-05)
 
-### Bug Fixes
+### Button
+
+##### Bug Fixes
 
 - Round button icon misalignment in IE bug was fixed.
 
