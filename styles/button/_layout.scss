@@ -12,11 +12,17 @@
     line-height: 25px;
     padding: $btn-padding;
     text-align: center;
+    text-decoration: none;
     user-select: none;
     white-space: nowrap;
     @at-root {
       &:disabled {
         cursor: default;
+      }
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
       }
 
       // sass-lint:disable no-vendor-prefixes
@@ -119,6 +125,11 @@
             margin-right: -12px;
           }
         }
+      }
+
+      &.e-block {
+        display: block;
+        width: 100%;
       }
     }
   }

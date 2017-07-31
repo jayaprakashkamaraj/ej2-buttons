@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### Button
+
+#### New Feature
+
+- Block button added.
+
+##### Bug Fixes
+
+- Underlining of text in link button bug was fixed.
+
 ## 1.0.10-preview (2017-07-05)
 
 ### Button

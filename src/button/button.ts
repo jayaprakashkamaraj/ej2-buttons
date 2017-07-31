@@ -1,6 +1,6 @@
 import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';
 import { CreateBuilder, ripple, EventHandler } from '@syncfusion/ej2-base';
-import { createElement, addClass, removeClass, attributes, detach } from '@syncfusion/ej2-base/dom';
+import { createElement, addClass, removeClass, detach } from '@syncfusion/ej2-base/dom';
 import { ButtonModel } from './button-model';
 import { ButtonHelper } from './button-builder';
 export type IconPosition = 'left' | 'right';
@@ -12,7 +12,7 @@ const cssClassName: CssClassNameT = {
 };
 
 /**
- * Button is used to perform an action by clicking it. It can contain both text and icon.
+ * Button is a graphical user interface element which triggers an event on its click action. It can have text, image or both.
  * ```html
  * <button id="button">Button</button>
  * ```
@@ -26,51 +26,52 @@ const cssClassName: CssClassNameT = {
 @NotifyPropertyChanges
 export class Button extends Component<HTMLButtonElement> implements INotifyPropertyChanged {
     /**
-     * Positions icon before / after text content in button.
+     * Positions icon before / after text content in button. 
+     * The iconPosition support two values "left" and "right".
      * When set to `right` the icon will be positioned right to text content.
-     * @default "IconPosition.left"
+     * @default "left"
      */
     @Property('left')
     public iconPosition: IconPosition;
 
     /**
-     * Defines class / multiple classes separated by space for button which is used to include icon in button.
-     * Button can include sprite image, font icon.
+     * Defines class / multiple classes separated by a space for button which is used to include an icon.
+     * Button can include a font icon, sprite image.
      * @default ""
      */
     @Property('')
     public iconCss: string;
 
     /**
-     * Indicates button is in `disabled` state. When set to `true` button will be in `disabled` state.
+     * Specifies a value that indicates whether the button control is `disabled` or not.
      * @default false
      */
     @Property(false)
     public disabled: boolean;
 
     /**
-     * Makes button visually prioritized. When set to `true`, button will look as more prioritized visually.
+     * Makes button visually prioritized. When set to `true`, button will look more prioritized visually.
      * @default false
      */
     @Property(false)
     public isPrimary: boolean;
 
     /**
-     * Adds class / multiple classes separated by space in button element. Types and styles of button can be defined with this.
+     * Defines class / multiple classes separated by a space, in button element. Button types, styles and size can be defined using this.
      * @default ""
      */
     @Property('')
     public cssClass: string;
 
     /**
-     * Defines the inner content of the button element.
+     * Defines the `content` of the button element which can be text or HTML elements.
      * @default ""
      */
     @Property('')
     public content: string;
 
     /**
-     * Makes the button as toggle button, When you set to `true`. When you click it, the state changes from normal to active state.
+     * Makes the button as a toggle button, when set to `true`. When you click it, the state changes from normal to active state.
      * @default false
      */
     @Property(false)
@@ -112,11 +113,6 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
         if (this.enableRtl) {
             this.element.classList.add(cssClassName.RTL);
         }
-        let ariaAttr: Object = {
-            'role': 'button',
-            'aria-describedby': this.element.textContent
-        };
-        attributes(this.element, <{ [key: string]: string }>ariaAttr);
         if (this.disabled) {
             this.controlStatus(this.disabled);
         }
@@ -175,7 +171,7 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
         super.destroy();
         removeClass([this.element], [cssClassName.PRIMARY, cssClassName.RTL, 'e-success',
             'e-info', 'e-danger', 'e-warning', 'e-flat', 'e-outline', 'e-small', 'e-bigger', 'e-active', 'e-round' ]);
-        ['role', 'aria-describedby', 'e-ripple', 'disabled'].forEach((value: string): void => {
+        ['e-ripple', 'disabled'].forEach((value: string): void => {
             element.removeAttribute(value);
         });
         if (this.content) {
