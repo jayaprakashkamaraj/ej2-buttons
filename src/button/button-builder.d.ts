@@ -10,15 +10,15 @@ export interface ButtonHelper {
 export interface  BuilderProperties {
 	create(): Button
 	/**
-	* Defines the `content` of the button element which can be text or HTML elements.
+	* Defines the `content` of the Button element that can either be text or HTML elements.
 	*/
 	content(value:string): BuilderProperties;
 	/**
-	* Defines class / multiple classes separated by a space, in button element. Button types, styles and size can be defined using this.
+	* Defines class/multiple classes separated by a space in the Button element. Button types, styles, and size can be defined using this.
 	*/
 	cssClass(value:string): BuilderProperties;
 	/**
-	* Specifies a value that indicates whether the button control is `disabled` or not.
+	* Specifies a value that indicates whether the Button control is `disabled` or not.
 	*/
 	disabled(value:boolean): BuilderProperties;
 	/**
@@ -30,23 +30,22 @@ export interface  BuilderProperties {
 	*/
 	enableRtl(value:boolean): BuilderProperties;
 	/**
-	* Defines class / multiple classes separated by a space for button which is used to include an icon.
-Button can include a font icon, sprite image.
+	* Defines class/multiple classes separated by a space for the Button that is used to include an icon.
+Buttons can also include font icon and sprite image.
 	*/
 	iconCss(value:string): BuilderProperties;
 	/**
-	* Positions icon before / after text content in button.
-The iconPosition support two values "left" and "right".
-When set to `right` the icon will be positioned right to text content.
+	* Positions the icon before/after the text content in the Button.
+When set to `right`, the icon will be positioned to the right of the text content.
 	*/
 	iconPosition(value:IconPosition): BuilderProperties;
 	isDestroyed(value:boolean): BuilderProperties;
 	/**
-	* Makes button visually prioritized. When set to `true`, button will look more prioritized visually.
+	* Allows the appearance of the Button to be enhanced and visually appealing when set to `true`.
 	*/
 	isPrimary(value:boolean): BuilderProperties;
 	/**
-	* Makes the button as a toggle button, when set to `true`. When you click it, the state changes from normal to active state.
+	* Makes the Button toggle, when set to `true`. When you click it, the state changes from normal to active.
 	*/
 	isToggle(value:boolean): BuilderProperties;
 	/**

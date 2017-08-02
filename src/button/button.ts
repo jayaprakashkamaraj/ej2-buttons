@@ -8,11 +8,12 @@ export type IconPosition = 'left' | 'right';
 const cssClassName: CssClassNameT = {
     RTL: 'e-rtl',
     BUTTON: 'e-btn',
-    PRIMARY: 'e-primary'
+    PRIMARY: 'e-primary',
+    ICONBTN: 'e-icon-btn'
 };
 
 /**
- * Button is a graphical user interface element which triggers an event on its click action. It can have text, image or both.
+ * Button is a graphical user interface element that triggers an event on its click action. It can contain a text, an image, or both.
  * ```html
  * <button id="button">Button</button>
  * ```
@@ -26,52 +27,51 @@ const cssClassName: CssClassNameT = {
 @NotifyPropertyChanges
 export class Button extends Component<HTMLButtonElement> implements INotifyPropertyChanged {
     /**
-     * Positions icon before / after text content in button. 
-     * The iconPosition support two values "left" and "right".
-     * When set to `right` the icon will be positioned right to text content.
+     * Positions the icon before/after the text content in the Button.
+     * When set to `right`, the icon will be positioned to the right of the text content.
      * @default "left"
      */
     @Property('left')
     public iconPosition: IconPosition;
 
     /**
-     * Defines class / multiple classes separated by a space for button which is used to include an icon.
-     * Button can include a font icon, sprite image.
+     * Defines class/multiple classes separated by a space for the Button that is used to include an icon.
+     * Buttons can also include font icon and sprite image.
      * @default ""
      */
     @Property('')
     public iconCss: string;
 
     /**
-     * Specifies a value that indicates whether the button control is `disabled` or not.
+     * Specifies a value that indicates whether the Button control is `disabled` or not.
      * @default false
      */
     @Property(false)
     public disabled: boolean;
 
     /**
-     * Makes button visually prioritized. When set to `true`, button will look more prioritized visually.
+     * Allows the appearance of the Button to be enhanced and visually appealing when set to `true`.
      * @default false
      */
     @Property(false)
     public isPrimary: boolean;
 
     /**
-     * Defines class / multiple classes separated by a space, in button element. Button types, styles and size can be defined using this.
+     * Defines class/multiple classes separated by a space in the Button element. Button types, styles, and size can be defined using this.
      * @default ""
      */
     @Property('')
     public cssClass: string;
 
     /**
-     * Defines the `content` of the button element which can be text or HTML elements.
+     * Defines the `content` of the Button element that can either be text or HTML elements.
      * @default ""
      */
     @Property('')
     public content: string;
 
     /**
-     * Makes the button as a toggle button, when set to `true`. When you click it, the state changes from normal to active state.
+     * Makes the Button toggle, when set to `true`. When you click it, the state changes from normal to active.
      * @default false
      */
     @Property(false)
@@ -126,6 +126,9 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
 
     private setIconCss(): void {
         if (this.iconCss) {
+            if (!this.element.textContent) {
+                this.element.classList.add(cssClassName.ICONBTN);
+            }
             let span: HTMLElement = createElement('span', { className: 'e-btn-icon ' + this.iconCss });
             let node: Node = this.element.childNodes[0];
             if (node && this.iconPosition === 'left') {
@@ -169,8 +172,8 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
         let span: Element;
         let element: Element = this.element;
         super.destroy();
-        removeClass([this.element], [cssClassName.PRIMARY, cssClassName.RTL, 'e-success',
-            'e-info', 'e-danger', 'e-warning', 'e-flat', 'e-outline', 'e-small', 'e-bigger', 'e-active', 'e-round' ]);
+        removeClass([this.element], [cssClassName.PRIMARY, cssClassName.RTL, cssClassName.ICONBTN, 'e-success',
+            'e-info', 'e-danger', 'e-warning', 'e-flat', 'e-outline', 'e-small', 'e-bigger', 'e-active', 'e-round']);
         ['e-ripple', 'disabled'].forEach((value: string): void => {
             element.removeAttribute(value);
         });
@@ -258,6 +261,7 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
                     break;
                 case 'content':
                     this.element.innerHTML = newProp.content;
+                    this.element.classList.remove(cssClassName.ICONBTN);
                     this.setIconCss();
                     break;
                 case 'isToggle':
@@ -278,6 +282,7 @@ interface CssClassNameT {
     RTL: string;
     BUTTON: string;
     PRIMARY: string;
+    ICONBTN: string;
 }
 
 /**
