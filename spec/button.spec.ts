@@ -1,5 +1,5 @@
 import { Button } from '../src/button/button';
-import { createElement, detach } from '@syncfusion/ej2-base/dom';
+import { createElement, detach } from '@syncfusion/ej2-base';
 /**
  * @param  {} 'Button'
  * @param  {} function(

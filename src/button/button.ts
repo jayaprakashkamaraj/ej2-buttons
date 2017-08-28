@@ -1,6 +1,6 @@
 import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';
 import { CreateBuilder, ripple, EventHandler } from '@syncfusion/ej2-base';
-import { createElement, addClass, removeClass, detach } from '@syncfusion/ej2-base/dom';
+import { createElement, addClass, removeClass, detach } from '@syncfusion/ej2-base';
 import { ButtonModel } from './button-model';
 import { ButtonHelper } from './button-builder';
 export type IconPosition = 'left' | 'right';
