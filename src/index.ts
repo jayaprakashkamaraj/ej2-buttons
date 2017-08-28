@@ -1,4 +1,4 @@
 /**
  * Button all modules
  */
-export * from './button';
+export * from './button/index';
