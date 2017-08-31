@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Button
+
+#### Bug Fixes
+
+- Rollup bundling issue fixed.
+
 ## 1.0.11-preview (2017-08-03)
 
 ### Button
