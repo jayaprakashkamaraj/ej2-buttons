@@ -1,0 +1,93 @@
+@include export-module('checkbox-theme') {
+  /*! checkbox theme */
+  .e-checkbox-wrapper {
+    // sass-lint:disable no-vendor-prefixes
+    -webkit-tap-highlight-color: transparent;
+    @at-root {
+      & .e-frame {
+        background-color: $bgcolor;
+        border-color: $border-color;
+
+        & .e-ripple-container {
+          & .e-ripple-element {
+            background: $ripple-bgcolor;
+          }
+        }
+
+        &.e-check {
+          background-color: $checkmark-bgcolor;
+          border-color: $checkmark-border-color;
+          color: $checkmark-color;
+        }
+
+        &.e-stop {
+          background-color: $indeterminate-bgcolor;
+          border-color: $indeterminate-border-color;
+          color: $indeterminate-color;
+        }
+      }
+
+      & .e-label {
+        color: $color;
+      }
+
+      &:hover,
+      &:focus {
+        & .e-frame {
+          background-color: $hover-bgcolor;
+          border-color: $hover-border-color;
+
+          &.e-check {
+            background-color: $checkmark-hover-bgcolor;
+            border-color: $checkmark-hover-border-color;
+            color: $checkmark-hover-color;
+          }
+
+          &.e-stop {
+            color: $indeterminate-hover-color;
+          }
+        }
+
+        & .e-label {
+          color: $hover-color;
+        }
+      }
+
+      &.e-checkbox-disabled {
+        & .e-frame {
+          background-color: $disabled-bgcolor;
+          border-color: $disabled-border-color;
+          color: $disabled-color;
+
+          &.e-check {
+            background-color: $checkmark-disabled-bgcolor;
+            border-color: $checkmark-disabled-border-color;
+            color: $checkmark-disabled-color;
+          }
+
+          &.e-stop {
+            background-color: $indeterminate-disabled-bgcolor;
+            border-color: $indeterminate-disabled-border-color;
+            color: $indeterminate-disabled-color;
+          }
+        }
+
+        & .e-label {
+          color: $disabled-color;
+        }
+      }
+
+      &.e-focus {
+        & .e-ripple-container {
+          background-color: $ripple-bgcolor;
+        }
+
+        & .e-check {
+          & .e-ripple-container {
+            background-color: $ripple-bgcolor;
+          }
+        }
+      }
+    }
+  }
+}
