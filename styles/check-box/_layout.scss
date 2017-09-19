@@ -96,6 +96,22 @@
         }
       }
 
+      &.e-rtl {
+        & .e-frame,
+        & .e-label {
+          margin-left: 0;
+          margin-right: $margin;
+        }
+
+        & .e-checkbox {
+          +.e-frame,
+          +.e-label {
+            margin-left: $margin;
+            margin-right: 0;
+          }
+        }
+      }
+
       & .e-ripple-container {
         border-radius: 50%;
         bottom: $ripple-size;
