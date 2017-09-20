@@ -52,7 +52,7 @@ When set to `before`, the label is positioned to left of the CheckBox.
 	*/
 	labelPosition(value:LabelPosition): BuilderProperties;
 	/**
-	* Overrides the global culture and localization value for this component. Default Global culture is 'en-US'
+	* Overrides the global culture and localization value for this component. Default global culture is 'en-US'.
 	*/
 	locale(value:string): BuilderProperties;
 	/**

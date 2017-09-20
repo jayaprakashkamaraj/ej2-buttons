@@ -1,5 +1,5 @@
 import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';
-import { CreateBuilder, ripple, EventHandler } from '@syncfusion/ej2-base';
+import { CreateBuilder, rippleEffect, EventHandler } from '@syncfusion/ej2-base';
 import { createElement, addClass, removeClass, detach } from '@syncfusion/ej2-base';
 import { ButtonModel } from './button-model';
 import { ButtonHelper } from './button-builder';
@@ -43,7 +43,7 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
     public iconCss: string;
 
     /**
-     * Specifies a value that indicates whether the Button control is `disabled` or not.
+     * Specifies a value that indicates whether the Button is `disabled` or not.
      * @default false
      */
     @Property(false)
@@ -116,7 +116,7 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
         if (this.disabled) {
             this.controlStatus(this.disabled);
         }
-        ripple(this.element, '.' + cssClassName.BUTTON);
+        rippleEffect(this.element, { selector: '.' + cssClassName.BUTTON });
         this.wireEvents();
     }
 

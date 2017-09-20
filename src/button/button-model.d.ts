@@ -1,4 +1,4 @@
-import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';import { CreateBuilder, ripple, EventHandler } from '@syncfusion/ej2-base';import { createElement, addClass, removeClass, detach } from '@syncfusion/ej2-base';import { ButtonHelper } from './button-builder';
+import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';import { CreateBuilder, rippleEffect, EventHandler } from '@syncfusion/ej2-base';import { createElement, addClass, removeClass, detach } from '@syncfusion/ej2-base';import { ButtonHelper } from './button-builder';
 import {IconPosition} from "./button";
 import {ComponentModel} from '@syncfusion/ej2-base';
 
@@ -22,7 +22,7 @@ export interface ButtonModel extends ComponentModel{
     iconCss?: string;
 
     /**
-     * Specifies a value that indicates whether the Button control is `disabled` or not.
+     * Specifies a value that indicates whether the Button is `disabled` or not.
      * @default false
      */
     disabled?: boolean;

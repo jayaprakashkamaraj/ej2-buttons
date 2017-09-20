@@ -18,7 +18,7 @@ export interface  BuilderProperties {
 	*/
 	cssClass(value:string): BuilderProperties;
 	/**
-	* Specifies a value that indicates whether the Button control is `disabled` or not.
+	* Specifies a value that indicates whether the Button is `disabled` or not.
 	*/
 	disabled(value:boolean): BuilderProperties;
 	/**
@@ -49,7 +49,7 @@ When set to `right`, the icon will be positioned to the right of the text conten
 	*/
 	isToggle(value:boolean): BuilderProperties;
 	/**
-	* Overrides the global culture and localization value for this component. Default Global culture is 'en-US'
+	* Overrides the global culture and localization value for this component. Default global culture is 'en-US'.
 	*/
 	locale(value:string): BuilderProperties;
 }
