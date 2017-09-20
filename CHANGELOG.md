@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### CheckBox
+
+- Supports different states
+ 
+- Label and its positioning support
+
+- Sizing support
+
 ## 1.0.14-preview (2017-08-31)
 
 ### Button
