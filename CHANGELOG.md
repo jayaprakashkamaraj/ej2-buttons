@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## 1.0.18-preview (2017-09-20)
+
 ### CheckBox
 
 - Supports different states
