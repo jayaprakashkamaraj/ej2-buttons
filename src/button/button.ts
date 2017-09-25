@@ -3,6 +3,7 @@ import { CreateBuilder, rippleEffect, EventHandler } from '@syncfusion/ej2-base'
 import { createElement, addClass, removeClass, detach } from '@syncfusion/ej2-base';
 import { ButtonModel } from './button-model';
 import { ButtonHelper } from './button-builder';
+import { getTextNode } from '../common/common';
 export type IconPosition = 'left' | 'right';
 
 const cssClassName: CssClassNameT = {
@@ -260,9 +261,14 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
                     }
                     break;
                 case 'content':
-                    this.element.innerHTML = newProp.content;
-                    this.element.classList.remove(cssClassName.ICONBTN);
-                    this.setIconCss();
+                    let node: Node = getTextNode(this.element);
+                    if (node) {
+                        node.textContent  = newProp.content;
+                    } else {
+                        this.element.innerHTML = newProp.content;
+                        this.element.classList.remove(cssClassName.ICONBTN);
+                        this.setIconCss();
+                    }
                     break;
                 case 'isToggle':
                     if (newProp.isToggle) {

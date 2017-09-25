@@ -198,12 +198,10 @@ describe('Button', () => {
             button.dataBind();
             expect(element.children[0].classList.contains('iconclass')).toEqual(true);
             button.destroy();
-            button.content = 'Button';
             button.iconPosition = 'right';
             button.iconCss = 'iconcss';
             button.dataBind();
             expect(element.children[0].classList.contains('iconcss')).toEqual(true);
-            expect(element.textContent).toEqual('Button');
         });
 
         it('IconPosition right in onPropertyChanged', () => {
@@ -263,17 +261,15 @@ describe('Button', () => {
         it('Content in onPropertyChanged', () => {
             button = new Button();
             button.appendTo('#button');
-            button.content = '<span class="e-icons e-btn-icon e-add-icon e-icon-left"></span>Button';
+            button.content = 'play';
             button.dataBind();
-            expect(element.childNodes[0].nodeName).toEqual('SPAN');
-            expect(element.textContent).toEqual('Button');
-            button.content = '<div>Button</div>';
+            expect(element.textContent).toEqual('play');
             button.iconCss = 'e-icons e-add-icon';
             button.iconPosition = 'left';
             button.dataBind();
             expect(element.childNodes[0].nodeName).toEqual('SPAN');
-            expect(element.childNodes[1].nodeName).toEqual('DIV');
-            expect(element.textContent).toEqual('Button');
+            expect(element.childNodes[1].nodeName).toEqual('#text');
+            expect(element.textContent).toEqual('play');
             button.content = 'Content';
             button.dataBind();
             expect(element.childNodes[0].nodeName).toEqual('SPAN');
