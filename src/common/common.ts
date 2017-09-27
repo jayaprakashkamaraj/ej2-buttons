@@ -1,4 +1,4 @@
-import { createElement, detach } from '@syncfusion/ej2-base';
+import { createElement, detach, rippleEffect } from '@syncfusion/ej2-base';
 import { getValue, setValue } from '@syncfusion/ej2-base';
 
 /**
@@ -38,6 +38,20 @@ export function getTextNode( element: HTMLElement): Node  {
         }
     }
     return null;
+}
+
+/**
+ * Creates CheckBox component UI with theming and ripple support.
+ * @private
+ */
+export function createCheckBox(): Element {
+    let wrapper: Element = createElement('div', { className: 'e-checkbox-wrapper' });
+    let frameSpan: Element = createElement('span', { className: 'e-frame e-icons' });
+    let rippleSpan: HTMLElement = createElement('span', { className: 'e-ripple-container' });
+    rippleEffect(rippleSpan, { isCenterRipple: true, duration: 400 });
+    frameSpan.appendChild(rippleSpan);
+    wrapper.appendChild(frameSpan);
+    return wrapper;
 }
 
 export interface EJ2Instance extends HTMLElement {

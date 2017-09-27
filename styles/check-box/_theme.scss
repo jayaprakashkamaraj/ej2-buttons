@@ -45,8 +45,29 @@
         color: $color;
       }
 
-      &:hover,
-      &:focus {
+      & .e-checkbox {
+        &:focus {
+          +.e-frame {
+            background-color: $hover-bgcolor;
+            border-color: $hover-border-color;
+            box-shadow: $focussed-box-shadow;
+
+            &.e-check {
+              background-color: $checkmark-hover-bgcolor;
+              border-color: $checkmark-hover-border-color;
+              box-shadow: $focussed-box-shadow;
+              color: $checkmark-hover-color;
+            }
+
+            &.e-stop {
+              box-shadow: $focussed-box-shadow;
+              color: $indeterminate-hover-color;
+            }
+          }
+        }
+      }
+
+      &:hover {
         & .e-frame {
           background-color: $hover-bgcolor;
           border-color: $hover-border-color;

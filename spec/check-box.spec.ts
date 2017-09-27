@@ -1,3 +1,4 @@
+import { createCheckBox } from './../src/common/common';
 import { CheckBox } from './../src/check-box/check-box';
 import { createElement } from '@syncfusion/ej2-base';
 /**
@@ -24,6 +25,7 @@ describe('CheckBox', () => {
             expect(element.parentElement.tagName).toEqual('LABEL');
             expect(element.parentElement.parentElement.classList.contains('e-checkbox-wrapper')).toEqual(true);
             expect(element.nextElementSibling.classList.contains('e-frame')).toEqual(true);
+            document.body.appendChild(createCheckBox());
         });
 
         it('CheckBox with Label', () => {

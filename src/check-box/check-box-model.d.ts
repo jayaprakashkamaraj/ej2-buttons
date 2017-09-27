@@ -1,4 +1,4 @@
-import { Component, CreateBuilder, INotifyPropertyChanged , NotifyPropertyChanges, Property } from '@syncfusion/ej2-base';import { BaseEventArgs, EmitType, Event, EventHandler, KeyboardEventArgs, KeyboardEvents } from '@syncfusion/ej2-base';import { addClass, attributes, createElement, detach, removeClass, rippleEffect } from '@syncfusion/ej2-base';import { getUniqueID, getValue, setValue } from '@syncfusion/ej2-base';import { CheckBoxHelper } from './check-box-builder';
+import { Component, CreateBuilder, INotifyPropertyChanged , NotifyPropertyChanges, Property } from '@syncfusion/ej2-base';import { BaseEventArgs, EmitType, Event, EventHandler, KeyboardEventArgs, KeyboardEvents } from '@syncfusion/ej2-base';import { addClass, attributes, createElement, detach, removeClass, rippleEffect, isRippleEnabled } from '@syncfusion/ej2-base';import { getUniqueID, getValue, setValue } from '@syncfusion/ej2-base';import { CheckBoxHelper } from './check-box-builder';
 import {ChangeEventArgs,LabelPosition} from "./check-box";
 import {ComponentModel} from '@syncfusion/ej2-base';
 

@@ -2,6 +2,30 @@
 
 ## [Unreleased]
 
+### Button
+
+#### New Feature
+
+- Bootstrap theme added.
+
+#### Bug Fixes
+
+- Toggle button ripple issue is fixed.
+
+### CheckBox
+
+#### New Feature
+
+- Bootstrap theme added.
+
+### RadioButton
+
+- Supports different states.
+ 
+- Label and its positioning support.
+
+- Sizing support.
+
 ## 1.0.18-preview (2017-09-20)
 
 ### CheckBox

@@ -6,6 +6,7 @@
     box-sizing: border-box;
     cursor: pointer;
     display: inline-block;
+    font-family: $btn-font-family;
     font-size: $btn-font-size;
     font-weight: $btn-font-weight;
     height: $btn-height;
@@ -92,7 +93,7 @@
       &.e-small {
         font-size: $btn-small-font-size;
         height: $btn-small-height;
-        line-height: 22px;
+        line-height: $btn-small-text-line-height;
         padding: $btn-small-padding;
 
         & .e-btn-icon {
@@ -117,10 +118,10 @@
         }
 
         &.e-round {
-          height: 30px;
+          height: $btn-round-small-height;
           line-height: 1;
           padding: 0;
-          width: 30px;
+          width: $btn-round-small-width;
 
           & .e-btn-icon {
             font-size: $btn-small-round-font-size;
@@ -208,7 +209,7 @@
       &.e-small {
         font-size: $btn-bigger-small-font-size;
         height: $btn-bigger-small-height;
-        line-height: 30px;
+        line-height: $btn-bigger-small-text-line-height;
         padding: $btn-bigger-small-padding;
 
         & .e-btn-icon {
@@ -233,10 +234,10 @@
         }
 
         &.e-round {
-          height: 40px;
+          height: $btn-round-bigger-small-height;
           line-height: 1;
           padding: 0;
-          width: 40px;
+          width: $btn-round-bigger-small-width;
 
           & .e-btn-icon {
             font-size: $btn-bigger-small-round-font-size;
