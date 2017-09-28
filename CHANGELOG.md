@@ -42,7 +42,7 @@
 
 - Block button added.
 
-##### Bug Fixes
+#### Bug Fixes
 
 - Underlining of text in link button bug was fixed.
 
@@ -50,7 +50,7 @@
 
 ### Button
 
-##### Bug Fixes
+#### Bug Fixes
 
 - Round button icon misalignment in IE bug was fixed.
 
