@@ -73,9 +73,20 @@
     }
 
     &:checked {
+      &:focus {
+        +label {
+          &::before {
+            border-color: $hover-check-border-color;
+          }
+
+          &::after {
+            background-color: $hover-check-bg-color;
+          }
+        }
+      }
+
       +label {
-        &:hover,
-        &:focus {
+        &:hover {
           &::before {
             border-color: $hover-check-border-color;
           }
