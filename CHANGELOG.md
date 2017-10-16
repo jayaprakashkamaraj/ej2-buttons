@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### CheckBox
+
+#### Bug Fixes
+
+- Indeterminate icon alignment issue fixed.
+
 ## 1.0.19-preview (2017-09-28)
 
 ### Button
@@ -23,7 +29,7 @@
 ### CheckBox
 
 - Supports different states
- 
+
 - Label and its positioning support
 
 - Sizing support

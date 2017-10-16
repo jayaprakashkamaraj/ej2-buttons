@@ -25,7 +25,6 @@ describe('CheckBox', () => {
             expect(element.parentElement.tagName).toEqual('LABEL');
             expect(element.parentElement.parentElement.classList.contains('e-checkbox-wrapper')).toEqual(true);
             expect(element.nextElementSibling.classList.contains('e-frame')).toEqual(true);
-            document.body.appendChild(createCheckBox());
         });
 
         it('CheckBox with Label', () => {
@@ -319,6 +318,19 @@ describe('CheckBox', () => {
             checkbox = new CheckBox({}, document.body.appendChild(createElement('input')) as HTMLInputElement);
             expect(checkbox.element.id).toContain('e-checkbox');
             expect(checkbox.element.type).toEqual('checkbox');
+        });
+    });
+
+    describe('creation by util function', () => {
+        it('', () => {
+            let checkboxElem: Element = createCheckBox();
+            expect(checkboxElem.classList.contains('e-checkbox-wrapper')).toBe(true);
+            expect(checkboxElem.querySelector('.e-frame')).not.toBeNull();
+        });
+
+        it('with ripple effect', () => {
+            let checkboxElem: Element = createCheckBox(true);
+            expect(checkboxElem.querySelector('.e-ripple-container')).not.toBeNull();
         });
     });
 });

@@ -44,12 +44,14 @@ export function getTextNode( element: HTMLElement): Node  {
  * Creates CheckBox component UI with theming and ripple support.
  * @private
  */
-export function createCheckBox(): Element {
+export function createCheckBox(enableRipple: boolean = false): Element {
     let wrapper: Element = createElement('div', { className: 'e-checkbox-wrapper' });
     let frameSpan: Element = createElement('span', { className: 'e-frame e-icons' });
-    let rippleSpan: HTMLElement = createElement('span', { className: 'e-ripple-container' });
-    rippleEffect(rippleSpan, { isCenterRipple: true, duration: 400 });
-    frameSpan.appendChild(rippleSpan);
+    if (enableRipple) {
+        let rippleSpan: HTMLElement = createElement('span', { className: 'e-ripple-container' });
+        rippleEffect(rippleSpan, { isCenterRipple: true, duration: 400 });
+        frameSpan.appendChild(rippleSpan);
+    }
     wrapper.appendChild(frameSpan);
     return wrapper;
 }
