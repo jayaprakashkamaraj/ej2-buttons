@@ -332,5 +332,15 @@ describe('CheckBox', () => {
             let checkboxElem: Element = createCheckBox(true);
             expect(checkboxElem.querySelector('.e-ripple-container')).not.toBeNull();
         });
+
+        it('with checked', () => {
+            let checkboxElem: Element = createCheckBox(false, { checked: true });
+            expect(checkboxElem.querySelector('.e-check')).not.toBeNull();
+        });
+
+        it('with label', () => {
+            let checkboxElem: Element = createCheckBox(true, { label: 'checkbox' });
+            expect(checkboxElem.querySelector('.e-label')).not.toBeNull();
+        });
     });
 });
