@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### CheckBox
+
+- Checked and label property support given in util function.
+
 ## 1.0.22-preview (2017-10-16)
 
 ### CheckBox
