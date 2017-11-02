@@ -8,18 +8,10 @@
         background-color: $bgcolor;
         border-color: $border-color;
 
-        & .e-ripple-element {
-          background: $checked-ripple-bgcolor;
-        }
-
         &.e-check {
           background-color: $checkmark-bgcolor;
           border-color: $checkmark-border-color;
           color: $checkmark-color;
-
-          & .e-ripple-element {
-            background: $ripple-bgcolor;
-          }
         }
 
         &.e-stop {
@@ -29,12 +21,22 @@
         }
       }
 
+      & .e-ripple-element {
+        background: $checked-ripple-bgcolor;
+      }
+
+      & .e-ripple-check {
+        & .e-ripple-element {
+          background: $ripple-bgcolor;
+        }
+      }
+
       &:active {
         & .e-ripple-element {
           background: $ripple-bgcolor;
         }
 
-        & .e-check {
+        & .e-ripple-check {
           & .e-ripple-element {
             background: $checked-ripple-bgcolor;
           }
@@ -115,10 +117,8 @@
       &.e-focus {
         & .e-ripple-container {
           background-color: $key-focussed-bgcolor;
-        }
 
-        & .e-check {
-          & .e-ripple-container {
+          &.e-ripple-check {
             background-color: $checked-ripple-bgcolor;
           }
         }

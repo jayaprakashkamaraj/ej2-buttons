@@ -8,34 +8,34 @@ Button is a graphical user interface element that triggers an event on its click
 
 #### Key Features
 
-- Supports different types
+- Provided with different types of Button.
 
-- Supports different styles
+- Provided with predefined styles of Button.
 
-- Sizing support
+- Provided with different sizes of Button.
 
-- Supports text and icon in the Button.
+- Supports text and icon on the Button.
 
 ### CheckBox
 
-CheckBox is a graphical user interface element that allows you to select one or more options from the choices.
+CheckBox is a graphical user interface element that allows to select one or more options from the choices.
 
 #### Key Features
 
-- Supports different states
+- Provided with different states of CheckBox.
 
-- Label and its positioning support
+- Supports label and its positioning.
 
-- Sizing support
+- Provided with different sizes of CheckBox.
 
 ### RadioButton
 
-RadioButton is a graphical user interface element that allows you to select one option from the choices.
+RadioButton is a graphical user interface element that allows to select one option from the choices.
 
 #### Key Features
 
-- Supports different states.
+- Provided with different states of RadioButton.
 
-- Label and its positioning support.
+- Supports label and its positioning.
 
-- Sizing support.
+- Provided with different sizes of RadioButton.

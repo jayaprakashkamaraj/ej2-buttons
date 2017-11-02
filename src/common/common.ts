@@ -46,14 +46,14 @@ export function getTextNode( element: HTMLElement): Node  {
  */
 export function createCheckBox(enableRipple: boolean = false, options: CheckBoxUtilModel = {}): Element {
     let wrapper: Element = createElement('div', { className: 'e-checkbox-wrapper' });
-    let frameSpan: Element = createElement('span', { className: 'e-frame e-icons' });
-    if (options.checked) {
-        frameSpan.classList.add('e-check');
-    }
     if (enableRipple) {
         let rippleSpan: HTMLElement = createElement('span', { className: 'e-ripple-container' });
         rippleEffect(rippleSpan, { isCenterRipple: true, duration: 400 });
-        frameSpan.appendChild(rippleSpan);
+        wrapper.appendChild(rippleSpan);
+    }
+    let frameSpan: Element = createElement('span', { className: 'e-frame e-icons' });
+    if (options.checked) {
+        frameSpan.classList.add('e-check');
     }
     wrapper.appendChild(frameSpan);
     if (options.label) {

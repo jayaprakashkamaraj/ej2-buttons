@@ -100,6 +100,7 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
 
     private changeHandler(event: Event): void {
         this.checked = true;
+        this.dataBind();
         let changeEventArgs: ChangeArgs = { checked: true, event: event };
         this.trigger('change', changeEventArgs);
     }

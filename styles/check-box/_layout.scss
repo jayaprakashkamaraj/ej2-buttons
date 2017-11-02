@@ -4,20 +4,34 @@
     cursor: pointer;
     display: inline-block;
     outline: none;
-    position: relative;
     user-select: none;
     @at-root {
 
-      label {
+      & label {
         cursor: pointer;
         display: inline-block;
+        line-height: 0;
         margin: 0;
+        position: relative;
       }
 
       &:focus {
         & .e-frame {
           box-shadow: $focussed-box-shadow;
         }
+      }
+
+      & .e-ripple-container {
+        border-radius: 50%;
+        bottom: $ripple-size;
+        height: $ripple-height;
+        left:  $ripple-size;
+        pointer-events: none;
+        position: absolute;
+        right:  $ripple-size;
+        top:  $ripple-size;
+        width: $ripple-width;
+        z-index: 1;
       }
 
       &.e-checkbox-disabled {
@@ -39,7 +53,6 @@
         position: absolute;
         width: 1px;
 
-        +.e-frame,
         +.e-label {
           margin-right: $margin;
         }
@@ -55,13 +68,16 @@
         height: $height;
         line-height: $lineheight;
         padding: $padding;
-        position: relative;
         text-align: center;
         vertical-align: middle;
         width: $width;
 
         +.e-label {
           margin-left: $margin;
+        }
+
+        +.e-ripple-container {
+          left: auto;
         }
       }
 
@@ -90,35 +106,38 @@
         font-weight: normal;
         user-select: none;
         vertical-align: middle;
-
-        +.e-frame {
-          margin-left: $margin;
-        }
       }
 
       &.e-rtl {
-        & .e-frame,
+
+        .e-ripple-container {
+          right: $ripple-size;
+        }
+
+        & .e-frame {
+          margin: 0;
+
+          + .e-ripple-container {
+            left: $ripple-size;
+            right: auto;
+          }
+        }
+
         & .e-label {
           margin-left: 0;
           margin-right: $margin;
+
+          +.e-frame {
+            margin: 0;
+          }
         }
 
         & .e-checkbox {
-          +.e-frame,
           +.e-label {
             margin-left: $margin;
             margin-right: 0;
           }
         }
-      }
-
-      & .e-ripple-container {
-        border-radius: 50%;
-        bottom: $ripple-size;
-        left:  $ripple-size;
-        position: absolute;
-        right:  $ripple-size;
-        top:  $ripple-size;
       }
 
       &.e-small {
@@ -142,10 +161,12 @@
         }
 
         & .e-ripple-container {
-          bottom:  $ripple-small-size;
+          bottom: $ripple-small-size;
+          height: $ripple-small-height;
           left: $ripple-small-size;
           right: $ripple-small-size;
           top: $ripple-small-size;
+          width: $ripple-small-width;
         }
       }
     }
@@ -157,9 +178,12 @@
       & .e-frame {
         height: $bigger-height;
         line-height: $bigger-lineheight;
-        margin-left: $bigger-margin;
-        margin-right: $bigger-margin;
         width: $bigger-width;
+
+        +.e-label {
+          font-size: $bigger-font-size;
+          margin-left: $bigger-margin;
+        }
       }
 
       & .e-check {
@@ -173,16 +197,31 @@
 
       & .e-label {
         font-size: $bigger-font-size;
-        margin-left: $bigger-margin;
-        margin-right: $bigger-margin;
       }
 
       & .e-ripple-container {
         bottom: $ripple-bigger-size;
+        height: $ripple-bigger-height;
         left: $ripple-bigger-size;
         right: $ripple-bigger-size;
         top: $ripple-bigger-size;
+        width: $ripple-bigger-width;
       }
+
+      &.e-rtl {
+        & .e-frame {
+          margin: 0;
+
+          +.e-label {
+            margin-left: 0;
+            margin-right: $bigger-margin;
+          }
+
+          +.e-ripple-container {
+            right: auto;
+          }
+        }
+    }
 
       &.e-small {
         & .e-frame {
@@ -206,9 +245,11 @@
 
         & .e-ripple-container {
           bottom: $ripple-bigger-small-size;
+          height: $ripple-bigger-small-height;
           left: $ripple-bigger-small-size;
           right: $ripple-bigger-small-size;
           top: $ripple-bigger-small-size;
+          width: $ripple-bigger-small-width;
         }
       }
     }

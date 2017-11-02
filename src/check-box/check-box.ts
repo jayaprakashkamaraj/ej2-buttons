@@ -13,6 +13,8 @@ const FRAME: string = 'e-frame';
 const INDETERMINATE: string = 'e-stop';
 const LABEL: string = 'e-label';
 const RIPPLE: string = 'e-ripple-container';
+const RIPPLECHECK: string = 'e-ripple-check';
+const RIPPLEINDETERMINATE: string = 'e-ripple-stop';
 const RTL: string = 'e-rtl';
 const WRAPPER: string = 'e-checkbox-wrapper';
 
@@ -112,19 +114,34 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
 
     private changeState(state?: string): void {
         let ariaState: string;
+        let rippleSpan: Element;
         let frameSpan: Element = this.getWrapper().getElementsByClassName(FRAME)[0];
+        if (isRippleEnabled) {
+            rippleSpan = this.getWrapper().getElementsByClassName(RIPPLE)[0];
+        }
         if (state === 'check') {
             frameSpan.classList.remove(INDETERMINATE);
             frameSpan.classList.add(CHECK);
+            if (rippleSpan) {
+                rippleSpan.classList.remove(RIPPLEINDETERMINATE);
+                rippleSpan.classList.add(RIPPLECHECK);
+            }
             ariaState = 'true';
             this.element.checked = true;
         } else if (state === 'uncheck') {
             removeClass([frameSpan], [CHECK, INDETERMINATE]);
+            if (rippleSpan) {
+                removeClass([rippleSpan], [RIPPLECHECK, RIPPLEINDETERMINATE]);
+            }
             ariaState = 'false';
             this.element.checked = false;
         } else {
             frameSpan.classList.remove(CHECK);
             frameSpan.classList.add(INDETERMINATE);
+            if (rippleSpan) {
+                rippleSpan.classList.remove(RIPPLECHECK);
+                rippleSpan.classList.add(RIPPLEINDETERMINATE);
+            }
             ariaState = 'mixed';
             this.element.indeterminate = true;
         }
@@ -244,7 +261,11 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
         label.appendChild(frameSpan);
         if (isRippleEnabled) {
             let rippleSpan: HTMLElement = createElement('span', { className: RIPPLE });
-            frameSpan.appendChild(rippleSpan);
+            if (this.labelPosition === 'before') {
+                label.appendChild(rippleSpan);
+            }else {
+                label.insertBefore(rippleSpan, frameSpan);
+            }
             rippleEffect(rippleSpan, { duration: 400, isCenterRipple: true });
         }
         if (this.label) {
@@ -268,7 +289,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
         let rippleSpan: Element = this.getWrapper().getElementsByClassName(RIPPLE)[0];
         if (rippleSpan) {
             let event: MouseEvent = document.createEvent('MouseEvents');
-            event.initEvent(e.type, true, true);
+            event.initEvent(e.type, false, true);
             rippleSpan.dispatchEvent(event);
         }
     }
@@ -419,11 +440,9 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
         EventHandler.remove(wrapper, 'mousedown', this.mouseDownHandler);
         EventHandler.remove(this.element, 'focus', this.focusHandler);
         EventHandler.remove(this.element, 'focusout', this.focusOutHandler);
-        let label: Element = wrapper.getElementsByClassName('e-label')[0];
-        if (label) {
-            EventHandler.remove(label, 'mousedown', this.labelMouseHandler);
-            EventHandler.remove(label, 'mouseup', this.labelMouseHandler);
-        }
+        let label: Element = wrapper.getElementsByTagName('label')[0];
+        EventHandler.remove(label, 'mousedown', this.labelMouseHandler);
+        EventHandler.remove(label, 'mouseup', this.labelMouseHandler);
     }
 
     protected wireEvents(): void {
@@ -440,11 +459,9 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
         EventHandler.add(wrapper, 'mousedown', this.mouseDownHandler, this);
         EventHandler.add(this.element, 'focus', this.focusHandler, this);
         EventHandler.add(this.element, 'focusout', this.focusOutHandler, this);
-        let label: Element = wrapper.getElementsByClassName('e-label')[0];
-        if (label) {
-            EventHandler.add(label, 'mousedown', this.labelMouseHandler, this);
-            EventHandler.add(label, 'mouseup', this.labelMouseHandler, this);
-        }
+        let label: Element = wrapper.getElementsByTagName('label')[0];
+        EventHandler.add(label, 'mousedown', this.labelMouseHandler, this);
+        EventHandler.add(label, 'mouseup', this.labelMouseHandler, this);
     }
 }
 
