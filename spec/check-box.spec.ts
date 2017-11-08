@@ -338,9 +338,15 @@ describe('CheckBox', () => {
             expect(checkboxElem.querySelector('.e-check')).not.toBeNull();
         });
 
-        it('with label', () => {
+        it('with label and without rtl', () => {
             let checkboxElem: Element = createCheckBox(true, { label: 'checkbox' });
             expect(checkboxElem.querySelector('.e-label')).not.toBeNull();
+            expect(checkboxElem.classList.contains('e-rtl')).toBe(false);
+        });
+
+        it('with label and rtl', () => {
+            let checkboxElem: Element = createCheckBox(true, { label: 'checkbox', enableRtl: true });
+            expect(checkboxElem.classList.contains('e-rtl')).toBe(true);
         });
     });
 });

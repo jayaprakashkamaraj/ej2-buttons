@@ -46,6 +46,9 @@ export function getTextNode( element: HTMLElement): Node  {
  */
 export function createCheckBox(enableRipple: boolean = false, options: CheckBoxUtilModel = {}): Element {
     let wrapper: Element = createElement('div', { className: 'e-checkbox-wrapper' });
+    if (options.enableRtl) {
+        wrapper.classList.add('e-rtl');
+    }
     if (enableRipple) {
         let rippleSpan: HTMLElement = createElement('span', { className: 'e-ripple-container' });
         rippleEffect(rippleSpan, { isCenterRipple: true, duration: 400 });
@@ -70,4 +73,5 @@ export interface EJ2Instance extends HTMLElement {
 export interface CheckBoxUtilModel {
     checked?: boolean;
     label?: string;
+    enableRtl?: boolean;
 }
