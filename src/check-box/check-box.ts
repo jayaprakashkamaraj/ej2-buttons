@@ -451,7 +451,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
         this.keyboardModule = new KeyboardEvents(
             wrapper as HTMLElement,
             {
-                eventName: 'keydown',
+                eventName: 'keyup',
                 keyAction: this.keyActionHandler.bind(this),
                 keyConfigs: { space: 'space' }
             });
