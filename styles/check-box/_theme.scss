@@ -1,6 +1,6 @@
 @include export-module('checkbox-theme') {
   /*! checkbox theme */
-  .e-checkbox-wrapper {
+  #{&}.e-checkbox-wrapper {
     // sass-lint:disable no-vendor-prefixes
     -webkit-tap-highlight-color: transparent;
     @at-root {

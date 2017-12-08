@@ -1,6 +1,6 @@
 @include export-module('checkbox-layout') {
   /*! checkbox layout */
-  .e-checkbox-wrapper {
+  #{&}.e-checkbox-wrapper {
     cursor: pointer;
     display: inline-block;
     outline: none;
@@ -172,85 +172,83 @@
     }
   }
 
-  &.e-bigger {
-    &.e-checkbox-wrapper,
-    & .e-checkbox-wrapper {
+  &.e-bigger #{&}.e-checkbox-wrapper,
+  &.e-bigger#{&}.e-checkbox-wrapper {
+    & .e-frame {
+      height: $bigger-height;
+      line-height: $bigger-lineheight;
+      width: $bigger-width;
+
+      +.e-label {
+        font-size: $bigger-font-size;
+        margin-left: $bigger-margin;
+      }
+    }
+
+    & .e-check {
+      font-size: $bigger-check-fontsize;
+    }
+
+    & .e-stop {
+      font-size: $bigger-indeterminate-fontsize;
+      line-height: $bigger-indeterminate-lineheight;
+    }
+
+    & .e-label {
+      font-size: $bigger-font-size;
+    }
+
+    & .e-ripple-container {
+      bottom: $ripple-bigger-size;
+      height: $ripple-bigger-height;
+      left: $ripple-bigger-size;
+      right: $ripple-bigger-size;
+      top: $ripple-bigger-size;
+      width: $ripple-bigger-width;
+    }
+
+    &.e-rtl {
       & .e-frame {
-        height: $bigger-height;
-        line-height: $bigger-lineheight;
-        width: $bigger-width;
+        margin: 0;
 
         +.e-label {
-          font-size: $bigger-font-size;
-          margin-left: $bigger-margin;
+          margin-left: 0;
+          margin-right: $bigger-margin;
         }
+
+        +.e-ripple-container {
+          right: auto;
+        }
+      }
+    }
+
+    &.e-small {
+      & .e-frame {
+        height: $bigger-small-height;
+        line-height: $bigger-small-lineheight;
+        width: $bigger-small-width;
       }
 
       & .e-check {
-        font-size: $bigger-check-fontsize;
+        font-size: $bigger-small-check-fontsize;
       }
 
       & .e-stop {
-        font-size: $bigger-indeterminate-fontsize;
-        line-height: $bigger-indeterminate-lineheight;
+        font-size: $bigger-small-indeterminate-fontsize;
+        line-height: $bigger-small-indeterminate-lineheight;
       }
 
       & .e-label {
-        font-size: $bigger-font-size;
+        font-size: $bigger-small-font-size;
       }
 
       & .e-ripple-container {
-        bottom: $ripple-bigger-size;
-        height: $ripple-bigger-height;
-        left: $ripple-bigger-size;
-        right: $ripple-bigger-size;
-        top: $ripple-bigger-size;
-        width: $ripple-bigger-width;
-      }
-
-      &.e-rtl {
-        & .e-frame {
-          margin: 0;
-
-          +.e-label {
-            margin-left: 0;
-            margin-right: $bigger-margin;
-          }
-
-          +.e-ripple-container {
-            right: auto;
-          }
-        }
-    }
-
-      &.e-small {
-        & .e-frame {
-          height: $bigger-small-height;
-          line-height: $bigger-small-lineheight;
-          width: $bigger-small-width;
-        }
-
-        & .e-check {
-          font-size: $bigger-small-check-fontsize;
-        }
-
-        & .e-stop {
-          font-size: $bigger-small-indeterminate-fontsize;
-          line-height: $bigger-small-indeterminate-lineheight;
-        }
-
-        & .e-label {
-          font-size: $bigger-small-font-size;
-        }
-
-        & .e-ripple-container {
-          bottom: $ripple-bigger-small-size;
-          height: $ripple-bigger-small-height;
-          left: $ripple-bigger-small-size;
-          right: $ripple-bigger-small-size;
-          top: $ripple-bigger-small-size;
-          width: $ripple-bigger-small-width;
-        }
+        bottom: $ripple-bigger-small-size;
+        height: $ripple-bigger-small-height;
+        left: $ripple-bigger-small-size;
+        right: $ripple-bigger-small-size;
+        top: $ripple-bigger-small-size;
+        width: $ripple-bigger-small-width;
       }
     }
   }

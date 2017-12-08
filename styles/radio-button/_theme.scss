@@ -1,12 +1,12 @@
 @include export-module('radiobutton-theme') {
   /*! radiobutton theme */
-  &.e-focus {
+  #{&}.e-focus {
     & .e-ripple-container {
       background-color: $focus-ripple-bgcolor;
     }
   }
 
-  &.e-radio {
+  #{&}.e-radio {
     +label {
       &::before {
         background-color: $background-color;

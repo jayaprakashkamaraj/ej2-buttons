@@ -2,7 +2,7 @@
   /*! radiobutton layout */
 
   // sass-lint:disable no-vendor-prefixes
-  &.e-radio {
+  #{&}.e-radio {
     -webkit-appearance: none;
     height: 1px;
     opacity: 0;
@@ -193,42 +193,107 @@
     }
   }
 
-  &.e-bigger {
-    & .e-radio {
-      +label {
+  &.e-bigger#{&}.e-radio,
+  &.e-bigger #{&}.e-radio {
+    +label {
+      height: $bigger-height;
+
+      & .e-label {
+        font-size: $bigger-font-size;
         height: $bigger-height;
+        line-height: $bigger-line-height;
+        padding-left: $bigger-padding;
+      }
 
+      &::before {
+        height: $bigger-height;
+        width: $bigger-width;
+      }
+
+      &::after {
+        height: $bigger-height;
+        left: $icon-left;
+        top: $icon-top;
+        width: $bigger-width;
+      }
+
+      & .e-ripple-container {
+        height: $bigger-ripple-size;
+        left: $bigger-ripple-position;
+        top: $bigger-ripple-position;
+        width: $bigger-ripple-size;
+      }
+
+      &.e-right,
+      &.e-rtl {
         & .e-label {
-          font-size: $bigger-font-size;
-          height: $bigger-height;
-          line-height: $bigger-line-height;
-          padding-left: $bigger-padding;
-        }
-
-        &::before {
-          height: $bigger-height;
-          width: $bigger-width;
+          padding-left: 0;
+          padding-right: $bigger-padding;
         }
 
         &::after {
-          height: $bigger-height;
-          left: $icon-left;
-          top: $icon-top;
-          width: $bigger-width;
+          left: auto;
+          right: $icon-right;
         }
 
         & .e-ripple-container {
-          height: $bigger-ripple-size;
-          left: $bigger-ripple-position;
-          top: $bigger-ripple-position;
-          width: $bigger-ripple-size;
+          left: auto;
+          right: $bigger-ripple-position;
+        }
+      }
+
+      &.e-right {
+        &.e-rtl {
+          & .e-label {
+            padding-left: $bigger-padding;
+            padding-right: 0;
+          }
+
+          &::after {
+            left: $icon-right;
+            right: auto;
+          }
+
+          & .e-ripple-container {
+            left: -11px;
+            right: auto;
+          }
+        }
+      }
+
+      &.e-small {
+        height: $bigger-small-height;
+
+        & .e-label {
+          height: $bigger-small-height;
+          line-height: $bigger-small-line-height;
+          padding-left: $bigger-small-padding;
+        }
+
+        &::before {
+          height: $bigger-small-height;
+          width: $bigger-small-width;
+        }
+
+        &::after {
+          height: $bigger-small-height;
+          left: $icon-left;
+          top: $icon-top;
+          width: $bigger-small-width;
+        }
+
+        & .e-ripple-container {
+          height: $bigger-small-ripple-size;
+          left: $small-ripple-position;
+          top: $small-ripple-position;
+          width: $bigger-small-ripple-size;
         }
 
         &.e-right,
         &.e-rtl {
           & .e-label {
             padding-left: 0;
-            padding-right: $bigger-padding;
+            padding-right: $bigger-small-padding;
           }
 
           &::after {
@@ -238,14 +303,14 @@
 
           & .e-ripple-container {
             left: auto;
-            right: $bigger-ripple-position;
+            right: $small-ripple-position;
           }
         }
 
         &.e-right {
           &.e-rtl {
             & .e-label {
-              padding-left: $bigger-padding;
+              padding-left: $bigger-small-padding;
               padding-right: 0;
             }
 
@@ -255,74 +320,8 @@
             }
 
             & .e-ripple-container {
-              left: -11px;
+              left: -10px;
               right: auto;
-            }
-          }
-        }
-
-        &.e-small {
-          height: $bigger-small-height;
-
-          & .e-label {
-            height: $bigger-small-height;
-            line-height: $bigger-small-line-height;
-            padding-left: $bigger-small-padding;
-          }
-
-          &::before {
-            height: $bigger-small-height;
-            width: $bigger-small-width;
-          }
-
-          &::after {
-            height: $bigger-small-height;
-            left: $icon-left;
-            top: $icon-top;
-            width: $bigger-small-width;
-          }
-
-          & .e-ripple-container {
-            height: $bigger-small-ripple-size;
-            left: $small-ripple-position;
-            top: $small-ripple-position;
-            width: $bigger-small-ripple-size;
-          }
-
-          &.e-right,
-          &.e-rtl {
-            & .e-label {
-              padding-left: 0;
-              padding-right: $bigger-small-padding;
-            }
-
-            &::after {
-              left: auto;
-              right: $icon-right;
-            }
-
-            & .e-ripple-container {
-              left: auto;
-              right: $small-ripple-position;
-            }
-          }
-
-          &.e-right {
-            &.e-rtl {
-              & .e-label {
-                padding-left: $bigger-small-padding;
-                padding-right: 0;
-              }
-
-              &::after {
-                left: $icon-right;
-                right: auto;
-              }
-
-              & .e-ripple-container {
-                left: -10px;
-                right: auto;
-              }
             }
           }
         }
