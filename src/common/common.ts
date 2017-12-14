@@ -1,5 +1,5 @@
-import { createElement, detach, rippleEffect } from '@syncfusion/ej2-base';
-import { getValue, setValue } from '@syncfusion/ej2-base';
+import { createElement, detach, rippleEffect, setValue } from '@syncfusion/ej2-base';
+import { getValue, addClass } from '@syncfusion/ej2-base';
 
 /**
  * Initialize wrapper element for angular.
@@ -46,6 +46,9 @@ export function getTextNode( element: HTMLElement): Node  {
  */
 export function createCheckBox(enableRipple: boolean = false, options: CheckBoxUtilModel = {}): Element {
     let wrapper: Element = createElement('div', { className: 'e-checkbox-wrapper' });
+    if (options.cssClass) {
+        addClass([wrapper], options.cssClass.split(' '));
+    }
     if (options.enableRtl) {
         wrapper.classList.add('e-rtl');
     }
@@ -66,12 +69,17 @@ export function createCheckBox(enableRipple: boolean = false, options: CheckBoxU
     return wrapper;
 }
 
-export interface EJ2Instance extends HTMLElement {
-    ej2_instances: Object[];
+export function rippleMouseHandler(e: MouseEvent, rippleSpan: Element): void {
+    if (rippleSpan) {
+        let event: MouseEvent = document.createEvent('MouseEvents');
+        event.initEvent(e.type, false, true);
+        rippleSpan.dispatchEvent(event);
+    }
 }
 
 export interface CheckBoxUtilModel {
     checked?: boolean;
     label?: string;
     enableRtl?: boolean;
+    cssClass?: string;
 }

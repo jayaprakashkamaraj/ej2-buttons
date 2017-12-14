@@ -1,9 +1,8 @@
-import { Component, CreateBuilder, INotifyPropertyChanged , NotifyPropertyChanges, Property } from '@syncfusion/ej2-base';
+import { Component, INotifyPropertyChanged , NotifyPropertyChanges, Property } from '@syncfusion/ej2-base';
 import { BaseEventArgs, EmitType, Event, EventHandler, KeyboardEventArgs, KeyboardEvents } from '@syncfusion/ej2-base';
-import { addClass, attributes, createElement, detach, removeClass, rippleEffect, isRippleEnabled } from '@syncfusion/ej2-base';
-import { getUniqueID, getValue, setValue } from '@syncfusion/ej2-base';
+import { addClass, createElement, detach, getUniqueID, isRippleEnabled, removeClass, rippleEffect } from '@syncfusion/ej2-base';
 import { CheckBoxModel } from './check-box-model';
-import { CheckBoxHelper } from './check-box-builder';
+import { wrapperInitialize, rippleMouseHandler } from './../common/common';
 
 export type LabelPosition = 'after' | 'before';
 
@@ -19,8 +18,8 @@ const RTL: string = 'e-rtl';
 const WRAPPER: string = 'e-checkbox-wrapper';
 
 /**
- * CheckBox is a graphical user interface element that allows you to select one or more options from the choices.
- * It contains checked, unchecked and indeterminate states.
+ * The CheckBox is a graphical user interface element that allows you to select one or more options from the choices.
+ * It contains checked, unchecked, and indeterminate states.
  * ```html
  * <input type="checkbox" id="checkbox"/>
  * <script>
@@ -31,6 +30,7 @@ const WRAPPER: string = 'e-checkbox-wrapper';
  */
 @NotifyPropertyChanges
 export class CheckBox extends Component<HTMLInputElement> implements INotifyPropertyChanged {
+    private tagName: string;
     private isKeyPressed: boolean = false;
     private keyboardModule: KeyboardEvents;
 
@@ -43,7 +43,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
 
     /**
      * Specifies a value that indicates whether the CheckBox is `checked` or not.
-     * When set to `true`, CheckBox will be in `checked` state.
+     * When set to `true`, the CheckBox will be in `checked` state.
      * @default false
      */
     @Property(false)
@@ -59,7 +59,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
 
     /**
      * Specifies a value that indicates whether the CheckBox is `disabled` or not.
-     * When set to `true`, CheckBox will be in `disabled` state.
+     * When set to `true`, the CheckBox will be in `disabled` state.
      * @default false
      */
     @Property(false)
@@ -67,7 +67,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
 
     /**
      * Specifies a value that indicates whether the CheckBox is in `indeterminate` state or not.
-     * When set to `true`, CheckBox will be in `indeterminate` state.
+     * When set to `true`, the CheckBox will be in `indeterminate` state.
      * @default false
      */
     @Property(false)
@@ -81,8 +81,10 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
     public label: string;
 
     /**
-     * Positions label `before`/`after` to the CheckBox.
-     * When set to `before`, the label is positioned to left of the CheckBox.
+     * Positions label `before`/`after` the CheckBox.
+     * The possible values are:
+     * * before - The label is positioned to left of the CheckBox.
+     * * after - The label is positioned to right of the CheckBox.
      * @default 'after'
      */
     @Property('after')
@@ -166,7 +168,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
     }
 
     /**
-     * To destroy the widget.
+     * Destroys the widget.
      * @returns void
      */
     public destroy(): void {
@@ -175,20 +177,24 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
         if (!this.disabled) {
             this.unWireEvents();
         }
-        wrapper.parentNode.insertBefore(this.element, wrapper);
-        detach(wrapper);
-        this.element.checked = false;
-        if (this.indeterminate) {
-            this.element.indeterminate = false;
-        }
-        if (this.name) {
-            this.element.removeAttribute('name');
-        }
-        if (this.value) {
-            this.element.removeAttribute('value');
-        }
-        if (this.disabled) {
-            this.element.removeAttribute('disabled');
+        if (this.tagName === 'INPUT') {
+            wrapper.parentNode.insertBefore(this.element, wrapper);
+            detach(wrapper);
+            this.element.checked = false;
+            if (this.indeterminate) {
+                this.element.indeterminate = false;
+            }
+            ['name', 'value', 'disabled'].forEach((key: string) => {
+                this.element.removeAttribute(key);
+            });
+        } else {
+            ['role', 'aria-checked', 'class'].forEach((key: string) => {
+                wrapper.removeAttribute(key);
+            });
+            if (this.element.id) {
+                wrapper.setAttribute('id', this.element.id);
+            }
+            wrapper.innerHTML = '';
         }
     }
 
@@ -287,11 +293,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
 
     private labelMouseHandler(e: MouseEvent): void {
         let rippleSpan: Element = this.getWrapper().getElementsByClassName(RIPPLE)[0];
-        if (rippleSpan) {
-            let event: MouseEvent = document.createEvent('MouseEvents');
-            event.initEvent(e.type, false, true);
-            rippleSpan.dispatchEvent(event);
-        }
+        rippleMouseHandler(e, rippleSpan);
     }
 
     private mouseDownHandler(): void {
@@ -371,25 +373,10 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
      * @private
      */
     protected preRender(): void {
-        if (this.element.tagName === 'EJ-CHECKBOX') {
-            let ejInst: Object = getValue('ej2_instances', this.element);
-            let input: Element = createElement('input', { attrs: { 'type': 'checkbox' } });
-            let props: string[] = ['change', 'cssClass', 'indeterminate', 'label', 'labelPosition'];
-            let wrapper: Element = createElement('EJ-CHECKBOX', {
-                className: WRAPPER, attrs: { 'role': 'checkbox', 'aria-checked': 'false' }
-            });
-            for (let index: number = 0, len: number = this.element.attributes.length; index < len; index++) {
-                if (props.indexOf(this.element.attributes[index].nodeName) === -1) {
-                    input.setAttribute(this.element.attributes[index].nodeName, this.element.attributes[index].nodeValue);
-                }
-            }
-            this.element.parentNode.insertBefore(input, this.element);
-            detach(this.element);
-            this.element = input as HTMLInputElement;
-            this.element.parentNode.insertBefore(wrapper, this.element);
-            wrapper.appendChild(this.element);
-            setValue('ej2_instances', ejInst, this.element);
-        }
+        let element: HTMLInputElement = this.element;
+        this.tagName = this.element.tagName;
+        element = wrapperInitialize('EJ-CHECKBOX', 'checkbox', element, WRAPPER);
+        this.element = element;
         if (this.element.getAttribute('type') !== 'checkbox') {
             this.element.setAttribute('type', 'checkbox');
         }
@@ -471,8 +458,3 @@ export interface ChangeEventArgs extends BaseEventArgs {
     /** Returns the checked value of the CheckBox. */
     checked?: boolean;
 }
-
-/**
- * Builder for CheckBox
- */
-export let checkBoxBuilder: CheckBoxHelper = <CheckBoxHelper>CreateBuilder(CheckBox);

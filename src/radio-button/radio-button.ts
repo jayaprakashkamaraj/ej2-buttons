@@ -1,10 +1,8 @@
-import { Component, CreateBuilder, INotifyPropertyChanged, rippleEffect, NotifyPropertyChanges, Property } from '@syncfusion/ej2-base';
+import { Component, INotifyPropertyChanged, rippleEffect, NotifyPropertyChanges, Property } from '@syncfusion/ej2-base';
 import { BaseEventArgs, EmitType, Event, EventHandler } from '@syncfusion/ej2-base';
-import { addClass, createElement, detach, isRippleEnabled } from '@syncfusion/ej2-base';
-import { getUniqueID } from '@syncfusion/ej2-base';
+import { addClass, createElement, detach, getInstance, getUniqueID, isRippleEnabled } from '@syncfusion/ej2-base';
 import { RadioButtonModel } from './radio-button-model';
-import { RadioButtonHelper } from './radio-button-builder';
-import { wrapperInitialize, EJ2Instance } from './../common/common';
+import { wrapperInitialize, rippleMouseHandler } from './../common/common';
 
 export type RadioLabelPosition = 'after' | 'before';
 
@@ -14,7 +12,7 @@ const RTL: string = 'e-rtl';
 const WRAPPER: string = 'e-radio-wrapper';
 
 /**
- * RadioButton is a graphical user interface element that allows you to select one option from the choices.
+ * The RadioButton is a graphical user interface element that allows you to select one option from the choices.
  * It contains checked and unchecked states.
  * ```html
  * <input type="radio" id="radio"/>
@@ -26,6 +24,7 @@ const WRAPPER: string = 'e-radio-wrapper';
  */
 @NotifyPropertyChanges
 export class RadioButton extends Component<HTMLInputElement> implements INotifyPropertyChanged {
+    private tagName: string;
     private isKeyPressed: boolean = false;
 
     /**
@@ -37,7 +36,7 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
 
     /**
      * Specifies a value that indicates whether the RadioButton is `checked` or not.
-     * When set to `true`, RadioButton will be in `checked` state.
+     * When set to `true`, the RadioButton will be in `checked` state.
      * @default false
      */
     @Property(false)
@@ -53,7 +52,7 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
 
     /**
      * Specifies a value that indicates whether the RadioButton is `disabled` or not.
-     * When set to `true`, RadioButton will be in `disabled` state.
+     * When set to `true`, the RadioButton will be in `disabled` state.
      * @default false
      */
     @Property(false)
@@ -67,12 +66,14 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
     public label: string;
 
     /**
-     * Positions label `before`/`after` to the RadioButton.
-     * When set to `before`, the label is positioned to left of the RadioButton.
+     * Positions label `before`/`after` the RadioButton.
+     * The possible values are:
+     * * before: The label is positioned to left of the RadioButton.
+     * * after: The label is positioned to right of the RadioButton.
      * @default 'after'
      */
     @Property('after')
-    public labelPosition: string;
+    public labelPosition: RadioLabelPosition;
 
     /**
      * Defines `name` attribute for the RadioButton.
@@ -101,42 +102,47 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
     private changeHandler(event: Event): void {
         this.checked = true;
         this.dataBind();
-        let changeEventArgs: ChangeArgs = { checked: true, event: event };
+        let changeEventArgs: ChangeArgs = { value: this.value, event: event };
         this.trigger('change', changeEventArgs);
     }
 
     private updateChange(state: boolean): void {
-        let input: Element;
+        let input: HTMLInputElement;
         let name: string = this.element.getAttribute('name');
         let radioGrp: NodeListOf<Element> = document.querySelectorAll('input.e-radio[name="' + name + '"]');
         for (let i: number = 0; i < radioGrp.length; i++) {
-            input = radioGrp[i];
+            input = radioGrp[i] as HTMLInputElement;
             if (input !== this.element) {
-                ((input as EJ2Instance).ej2_instances[0] as RadioButton).checked = false;
+                (getInstance(input, RadioButton) as RadioButton).checked = false;
             }
         }
     }
 
     /**
-     * To destroy the widget.
+     * Destroys the widget.
      * @returns void
      */
     public destroy(): void {
-        let label: Element = this.getLabel();
+        let radioWrap: Element = this.element.parentElement;
         super.destroy();
         if (!this.disabled) {
             this.unWireEvents();
         }
-        detach(label);
-        this.element.checked = false;
-        if (this.name) {
-            this.element.removeAttribute('name');
-        }
-        if (this.value) {
-            this.element.removeAttribute('value');
-        }
-        if (this.disabled) {
-            this.element.removeAttribute('disabled');
+        if (this.tagName === 'INPUT') {
+            radioWrap.parentNode.insertBefore(this.element, radioWrap);
+            detach(radioWrap);
+            this.element.checked = false;
+            ['name', 'value', 'disabled'].forEach((key: string) => {
+                this.element.removeAttribute(key);
+            });
+        } else {
+            ['role', 'aria-checked', 'class'].forEach((key: string) => {
+                radioWrap.removeAttribute(key);
+            });
+            if (this.element.id) {
+                radioWrap.setAttribute('id', this.element.id);
+            }
+            radioWrap.innerHTML = '';
         }
     }
 
@@ -217,11 +223,7 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
 
     private labelRippleHandler(e: MouseEvent): void {
         let ripple: Element = this.getLabel().getElementsByClassName(RIPPLE)[0];
-        if (ripple) {
-            let event: MouseEvent = document.createEvent('MouseEvents');
-            event.initEvent(e.type, true, true);
-            ripple.dispatchEvent(event);
-        }
+        rippleMouseHandler(e, ripple);
     }
 
     private mouseDownHandler(): void {
@@ -290,6 +292,7 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
      */
     protected preRender(): void {
         let element: HTMLInputElement = this.element;
+        this.tagName = this.element.tagName;
         element = wrapperInitialize('EJ-RADIOBUTTON', 'radio', element, WRAPPER);
         this.element = element;
         if (this.element.getAttribute('type') !== 'radio') {
@@ -361,13 +364,8 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
 }
 
 export interface ChangeArgs extends BaseEventArgs {
-    /** Returns the checked value of the RadioButton. */
-    checked?: boolean;
+    /** Returns the value of the RadioButton. */
+    value?: string;
     /** Returns the event parameters of the RadioButton. */
     event?: Event;
 }
-
-/**
- * Builder for RadioButton
- */
-export let radioButtonBuilder: RadioButtonHelper = <RadioButtonHelper>CreateBuilder(RadioButton);

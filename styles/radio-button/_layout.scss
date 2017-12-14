@@ -193,8 +193,8 @@
     }
   }
 
-  &.e-bigger#{&}.e-radio,
-  &.e-bigger #{&}.e-radio {
+  &.e-bigger #{&}.e-radio,
+  &.e-bigger#{&}.e-radio {
     +label {
       height: $bigger-height;
 

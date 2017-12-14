@@ -1,8 +1,7 @@
 import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';
-import { CreateBuilder, rippleEffect, EventHandler } from '@syncfusion/ej2-base';
+import { rippleEffect, EventHandler } from '@syncfusion/ej2-base';
 import { createElement, addClass, removeClass, detach } from '@syncfusion/ej2-base';
 import { ButtonModel } from './button-model';
-import { ButtonHelper } from './button-builder';
 import { getTextNode } from '../common/common';
 export type IconPosition = 'left' | 'right';
 
@@ -14,7 +13,7 @@ const cssClassName: CssClassNameT = {
 };
 
 /**
- * Button is a graphical user interface element that triggers an event on its click action. It can contain a text, an image, or both.
+ * The Button is a graphical user interface element that triggers an event on its click action. It can contain a text, an image, or both.
  * ```html
  * <button id="button">Button</button>
  * ```
@@ -29,7 +28,9 @@ const cssClassName: CssClassNameT = {
 export class Button extends Component<HTMLButtonElement> implements INotifyPropertyChanged {
     /**
      * Positions the icon before/after the text content in the Button.
-     * When set to `right`, the icon will be positioned to the right of the text content.
+     * The possible values are:
+     * * left: The icon will be positioned to the left of the text content.
+     * * right: The icon will be positioned to the right of the text content.
      * @default "left"
      */
     @Property('left')
@@ -58,14 +59,15 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
     public isPrimary: boolean;
 
     /**
-     * Defines class/multiple classes separated by a space in the Button element. Button types, styles, and size can be defined using this.
+     * Defines class/multiple classes separated by a space in the Button element. The Button types, styles, and
+     * size can be defined by using this.
      * @default ""
      */
     @Property('')
     public cssClass: string;
 
     /**
-     * Defines the `content` of the Button element that can either be text or HTML elements.
+     * Defines the `content` of the Button element that can either be a text or HTML elements.
      * @default ""
      */
     @Property('')
@@ -166,7 +168,7 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
 
 
     /**
-     * To destroy the widget.
+     * Destroys the widget.
      * @returns void
      */
     public destroy(): void {
@@ -290,8 +292,3 @@ interface CssClassNameT {
     PRIMARY: string;
     ICONBTN: string;
 }
-
-/**
- * builder for button
- */
-export let buttonBuilder: ButtonHelper = <ButtonHelper>CreateBuilder(Button);

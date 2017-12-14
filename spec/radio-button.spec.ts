@@ -253,6 +253,8 @@ describe('RadioButton', () => {
             expect(radio.element.parentElement.children[0].tagName).toEqual('INPUT');
             expect(radio.element.parentElement.children[1].tagName).toEqual('LABEL');
             expect(radio.element.getAttribute('label')).toEqual(null);
+            radio.destroy();
+            expect((document.getElementById('ngradiobutton')).tagName).toBe('EJ-RADIOBUTTON');
             radio = new RadioButton({}, document.body.appendChild(createElement('input')) as HTMLInputElement);
             expect(radio.element.id).toContain('e-radio');
             expect(radio.element.type).toEqual('radio');

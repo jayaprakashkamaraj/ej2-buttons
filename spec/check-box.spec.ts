@@ -315,6 +315,8 @@ describe('CheckBox', () => {
             expect(checkbox.element.parentElement.children[0].tagName).toEqual('INPUT');
             expect(checkbox.element.parentElement.children[1].classList.contains('e-frame')).toEqual(true);
             expect(checkbox.element.getAttribute('label')).toEqual(null);
+            checkbox.destroy();
+            expect((document.getElementById('ngcheckbox')).tagName).toBe('EJ-CHECKBOX');
             checkbox = new CheckBox({}, document.body.appendChild(createElement('input')) as HTMLInputElement);
             expect(checkbox.element.id).toContain('e-checkbox');
             expect(checkbox.element.type).toEqual('checkbox');
@@ -334,8 +336,9 @@ describe('CheckBox', () => {
         });
 
         it('with checked', () => {
-            let checkboxElem: Element = createCheckBox(false, { checked: true });
+            let checkboxElem: Element = createCheckBox(false, { checked: true, cssClass: 'e-small' });
             expect(checkboxElem.querySelector('.e-check')).not.toBeNull();
+            expect(checkboxElem.classList.contains('e-small')).toBe(true);
         });
 
         it('with label and without rtl', () => {
