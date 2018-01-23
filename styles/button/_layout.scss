@@ -1,6 +1,7 @@
 ﻿@include export-module('button-layout') {
   /*! button layout */
-  #{&}.e-btn {
+  #{&}.e-btn,
+  .e-css.e-btn {
     border: $btn-border;
     border-radius: $btn-border-radius;
     box-sizing: border-box;
@@ -152,7 +153,9 @@
   }
 
   .e-bigger #{&}.e-btn,
-  .e-bigger#{&}.e-btn {
+  .e-bigger#{&}.e-btn,
+  .e-bigger .e-css.e-btn,
+  .e-bigger.e-css.e-btn {
     font-size: $btn-bigger-font-size;
     height: $btn-bigger-height;
     line-height: $btn-bigger-text-line-height;

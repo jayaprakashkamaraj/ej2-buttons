@@ -11,10 +11,6 @@ A package of Essential JS 2 Button, CheckBox and RadioButton components. It come
 * [RadioButton Demo](http://ej2.syncfusion.com/demos/#/material/button/radio-button.html)
 * [RadioButton Documentation](http://ej2.syncfusion.com/documentation/radio-button)
 
-## Changelog
-
-Check the changelog [here](https://github.com/syncfusion/ej2-buttons/blob/master/CHANGELOG.md)
-
 ## Installing
 
 To install all dependent packages, use the below command

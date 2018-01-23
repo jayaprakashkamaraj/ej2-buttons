@@ -45,7 +45,7 @@ export function getTextNode( element: HTMLElement): Node  {
  * @private
  */
 export function createCheckBox(enableRipple: boolean = false, options: CheckBoxUtilModel = {}): Element {
-    let wrapper: Element = createElement('div', { className: 'e-checkbox-wrapper' });
+    let wrapper: Element = createElement('div', { className: 'e-checkbox-wrapper e-css' });
     if (options.cssClass) {
         addClass([wrapper], options.cssClass.split(' '));
     }

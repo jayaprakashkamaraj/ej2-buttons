@@ -1,6 +1,7 @@
 ﻿@include export-module('checkbox-layout') {
   /*! checkbox layout */
-  #{&}.e-checkbox-wrapper {
+  #{&}.e-checkbox-wrapper,
+  .e-css.e-checkbox-wrapper {
     cursor: pointer;
     display: inline-block;
     outline: none;
@@ -173,7 +174,9 @@
   }
 
   &.e-bigger #{&}.e-checkbox-wrapper,
-  &.e-bigger#{&}.e-checkbox-wrapper {
+  &.e-bigger#{&}.e-checkbox-wrapper,
+  &.e-bigger .e-css.e-checkbox-wrapper,
+  &.e-bigger.e-css.e-checkbox-wrapper {
     & .e-frame {
       height: $bigger-height;
       line-height: $bigger-lineheight;
