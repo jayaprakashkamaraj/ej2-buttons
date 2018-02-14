@@ -2,6 +2,20 @@
 
 ## [Unreleased]
 
+### CheckBox
+
+#### Bug Fixes
+
+- Label text responsive issue fixed.
+
+## 15.4.27-preview (2018-01-30)
+
+### CheckBox
+
+#### Bug Fixes
+
+- Wrapped text overlaps frame icon issue fixed.
+
 ## 15.4.26-preview (2018-01-23)
 
 ### CheckBox
