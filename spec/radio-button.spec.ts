@@ -45,7 +45,7 @@ describe('RadioButton', () => {
         });
 
         it('RadioButton with labelPosition', () => {
-            radio = new RadioButton({ label: 'RadioButton', labelPosition: 'before' }, '#radio');
+            radio = new RadioButton({ label: 'RadioButton', labelPosition: 'Before' }, '#radio');
             expect(element.parentElement.children[1].nodeName).toEqual('LABEL');
         });
 
@@ -101,8 +101,8 @@ describe('RadioButton', () => {
         });
 
         it('RadioButton with label position', () => {
-            radio = new RadioButton({ labelPosition: 'before' }, '#radio');
-            expect(radio.labelPosition).toEqual('before');
+            radio = new RadioButton({ labelPosition: 'Before' }, '#radio');
+            expect(radio.labelPosition).toEqual('Before');
         });
 
         it('RadioButton with name', () => {
@@ -180,10 +180,10 @@ describe('RadioButton', () => {
 
         it('RadioButton with labelPosition', () => {
             radio = new RadioButton({ label: 'RadioButton' }, '#radio');
-            radio.labelPosition = 'before';
+            radio.labelPosition = 'Before';
             radio.dataBind();
             expect(element.parentElement.children[1].classList.contains('e-right')).toEqual(true);
-            radio.labelPosition = 'after';
+            radio.labelPosition = 'After';
             radio.dataBind();
             expect(element.parentElement.children[1].classList.contains('e-right')).toEqual(false);
         });
@@ -242,19 +242,23 @@ describe('RadioButton', () => {
             expect(element.nextElementSibling.classList.contains('e-focus')).toEqual(false);
             radio.focusOutHandler();
             radio.mouseDownHandler();
+            let event: any = {
+                preventDefault: (): void => { /** NO Code */ },
+                type: 'mousedown'
+            };
             radio.labelRippleHandler(event);
             expect(element.parentElement.children[0].classList.contains('e-ripple-container')).toEqual(false);
         });
 
         it('Pre render method', () => {
-            document.body.appendChild(createElement('EJ-RADIOBUTTON', { id: 'ngradiobutton', attrs: { label: 'radiobutton' } }));
+            document.body.appendChild(createElement('EJS-RADIOBUTTON', { id: 'ngradiobutton', attrs: { label: 'radiobutton' } }));
             radio = new RadioButton({}, '#ngradiobutton');
-            expect(radio.element.parentElement.tagName).toEqual('EJ-RADIOBUTTON');
+            expect(radio.element.parentElement.tagName).toEqual('EJS-RADIOBUTTON');
             expect(radio.element.parentElement.children[0].tagName).toEqual('INPUT');
             expect(radio.element.parentElement.children[1].tagName).toEqual('LABEL');
             expect(radio.element.getAttribute('label')).toEqual(null);
             radio.destroy();
-            expect((document.getElementById('ngradiobutton')).tagName).toBe('EJ-RADIOBUTTON');
+            expect((document.getElementById('ngradiobutton')).tagName).toBe('EJS-RADIOBUTTON');
             radio = new RadioButton({}, document.body.appendChild(createElement('input')) as HTMLInputElement);
             expect(radio.element.id).toContain('e-radio');
             expect(radio.element.type).toEqual('radio');

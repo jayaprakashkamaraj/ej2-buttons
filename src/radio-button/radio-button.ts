@@ -1,10 +1,10 @@
 import { Component, INotifyPropertyChanged, rippleEffect, NotifyPropertyChanges, Property } from '@syncfusion/ej2-base';
-import { BaseEventArgs, EmitType, Event, EventHandler } from '@syncfusion/ej2-base';
-import { addClass, createElement, detach, getInstance, getUniqueID, isRippleEnabled } from '@syncfusion/ej2-base';
-import { RadioButtonModel } from './radio-button-model';
+import { addClass, createElement, getInstance, getUniqueID, isRippleEnabled, removeClass } from '@syncfusion/ej2-base';
+import { BaseEventArgs, detach, EmitType, Event, EventHandler } from '@syncfusion/ej2-base';
 import { wrapperInitialize, rippleMouseHandler } from './../common/common';
+import { RadioButtonModel } from './radio-button-model';
 
-export type RadioLabelPosition = 'after' | 'before';
+export type RadioLabelPosition = 'After' | 'Before';
 
 const LABEL: string = 'e-label';
 const RIPPLE: string = 'e-ripple-container';
@@ -68,11 +68,11 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
     /**
      * Positions label `before`/`after` the RadioButton.
      * The possible values are:
-     * * before: The label is positioned to left of the RadioButton.
-     * * after: The label is positioned to right of the RadioButton.
-     * @default 'after'
+     * * Before: The label is positioned to left of the RadioButton.
+     * * After: The label is positioned to right of the RadioButton.
+     * @default 'After'
      */
-    @Property('after')
+    @Property('After')
     public labelPosition: RadioLabelPosition;
 
     /**
@@ -255,9 +255,9 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
                     break;
                 case 'cssClass':
                     if (oldProp.cssClass) {
-                        label.classList.remove(oldProp.cssClass);
+                        removeClass([label], oldProp.cssClass.split(' '));
                     }
-                    label.classList.add(newProp.cssClass);
+                    addClass([label], newProp.cssClass.split(' '));
                     break;
                 case 'enableRtl':
                     if (newProp.enableRtl) {
@@ -270,7 +270,7 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
                     this.setText(newProp.label);
                     break;
                 case 'labelPosition':
-                    if (newProp.labelPosition === 'before') {
+                    if (newProp.labelPosition === 'Before') {
                         label.classList.add('e-right');
                     } else {
                         label.classList.remove('e-right');
@@ -293,7 +293,7 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
     protected preRender(): void {
         let element: HTMLInputElement = this.element;
         this.tagName = this.element.tagName;
-        element = wrapperInitialize('EJ-RADIOBUTTON', 'radio', element, WRAPPER);
+        element = wrapperInitialize('EJS-RADIOBUTTON', 'radio', element, WRAPPER);
         this.element = element;
         if (this.element.getAttribute('type') !== 'radio') {
             this.element.setAttribute('type', 'radio');
@@ -327,7 +327,7 @@ export class RadioButton extends Component<HTMLInputElement> implements INotifyP
             textLabel = createElement('span', { className: LABEL, innerHTML: text });
             label.appendChild(textLabel);
         }
-        if (this.labelPosition === 'before') {
+        if (this.labelPosition === 'Before') {
             this.getLabel().classList.add('e-right');
         } else {
             this.getLabel().classList.remove('e-right');

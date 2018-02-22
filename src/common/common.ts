@@ -28,7 +28,7 @@ export function wrapperInitialize(tag: string, type: string, element: HTMLInputE
     return element;
 }
 
-export function getTextNode( element: HTMLElement): Node  {
+export function getTextNode(element: HTMLElement): Node {
     let node: Node;
     let childnode: NodeList = element.childNodes;
     for (let i: number = 0; i < childnode.length; i++) {

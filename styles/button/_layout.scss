@@ -10,15 +10,16 @@
     font-family: $font-family;
     font-size: $btn-font-size;
     font-weight: $btn-font-weight;
-    height: $btn-height;
     justify-content: center;
     line-height: $btn-text-line-height;
     outline: none;
     padding: $btn-padding;
+    position: relative;
     text-align: center;
     text-decoration: none;
     text-transform: $btn-text-transform;
     user-select: none;
+    vertical-align: middle;
     white-space: nowrap;
     @at-root {
       &:disabled {
@@ -39,20 +40,30 @@
       & .e-btn-icon {
         display: inline-block;
         font-size: $btn-icon-font-size;
-        height: 25px;
-        line-height: 25px;
-        margin-top: -2px;
+        margin-top: $btn-icon-margin-top;
         vertical-align: middle;
-        width: auto;
+        width: $icon-btn-width;
 
         &.e-icon-left {
-          margin-left: $btn-icon-margin-left;
-          width: 27px;
+          margin-left: $btn-icon-margin;
+          width: $btn-icon-width;
         }
 
         &.e-icon-right {
-          margin-right: $btn-icon-margin-right;
-          width: 27px;
+          margin-right: $btn-icon-margin;
+          width: $btn-icon-width;
+        }
+
+        &.e-icon-top {
+          display: block;
+          margin-top: 0;
+          width: auto;
+        }
+
+        &.e-icon-bottom {
+          display: block;
+          margin-top: 0;
+          width: auto;
         }
       }
 
@@ -69,21 +80,21 @@
 
         & .e-btn-icon {
           font-size: $btn-round-font-size;
-          height: 24px;
           line-height: $btn-round-icon-line-height;
+          margin-top: 0;
           width: auto;
         }
       }
 
       &.e-rtl {
         & .e-icon-right {
-          margin-left: $btn-icon-margin-left;
+          margin-left: $btn-icon-margin;
           margin-right: 0;
         }
 
         & .e-icon-left {
           margin-left: 0;
-          margin-right: $btn-icon-margin-right;
+          margin-right: $btn-icon-margin;
         }
       }
 
@@ -93,24 +104,29 @@
 
       &.e-small {
         font-size: $btn-small-font-size;
-        height: $btn-small-height;
         line-height: $btn-small-text-line-height;
         padding: $btn-small-padding;
 
         & .e-btn-icon {
           font-size: $btn-small-icon-font-size;
-          height: 22px;
-          line-height: 22px;
-          width: 12px;
+          width: $icon-small-btn-width;
 
           &.e-icon-left {
-            margin-left: $btn-icon-margin-left;
-            width: 24px;
+            margin-left: $btn-small-icon-margin;
+            width: $btn-small-icon-width;
           }
 
           &.e-icon-right {
-            margin-right: $btn-icon-margin-right;
-            width: 24px;
+            margin-right: $btn-small-icon-margin;
+            width: $btn-small-icon-width;
+          }
+
+          &.e-icon-top {
+            width: auto;
+          }
+
+          &.e-icon-bottom {
+            width: auto;
           }
         }
 
@@ -126,7 +142,6 @@
 
           & .e-btn-icon {
             font-size: $btn-small-round-font-size;
-            height: 16px;
             line-height: $btn-small-round-icon-line-height;
             width: auto;
           }
@@ -134,13 +149,13 @@
 
         &.e-rtl {
           & .e-icon-right {
-            margin-left: $btn-icon-margin-left;
+            margin-left: $btn-small-icon-margin;
             margin-right: 0;
           }
 
           & .e-icon-left {
             margin-left: 0;
-            margin-right: $btn-icon-margin-right;
+            margin-right: btn-small-icon-margin;
           }
         }
       }
@@ -157,24 +172,29 @@
   .e-bigger .e-css.e-btn,
   .e-bigger.e-css.e-btn {
     font-size: $btn-bigger-font-size;
-    height: $btn-bigger-height;
     line-height: $btn-bigger-text-line-height;
     padding: $btn-bigger-padding;
 
     & .e-btn-icon {
       font-size: $btn-bigger-icon-font-size;
-      height: 34px;
-      line-height: 34px;
-      width: 18px;
+      width: $icon-bigger-btn-width;
 
       &.e-icon-left {
-        margin-left: $btn-bigger-icon-margin-left;
-        width: 36px;
+        margin-left: $btn-bigger-icon-margin;
+        width: $btn-bigger-icon-width;
       }
 
       &.e-icon-right {
-        margin-right: $btn-bigger-icon-margin-right;
-        width: 36px;
+        margin-right: $btn-bigger-icon-margin;
+        width: $btn-bigger-icon-width;
+      }
+
+      &.e-icon-top {
+        width: auto;
+      }
+
+      &.e-icon-bottom {
+        width: auto;
       }
     }
 
@@ -190,44 +210,48 @@
 
       & .e-btn-icon {
         font-size: $btn-bigger-round-font-size;
-        height: 24px;
-        line-height: 28px;
+        line-height: $btn-bigger-round-icon-line-height;
         width: auto;
       }
     }
 
     &.e-rtl {
       & .e-icon-right {
-        margin-left: $btn-bigger-icon-margin-left;
+        margin-left: $btn-bigger-icon-margin;
         margin-right: 0;
       }
 
       & .e-icon-left {
         margin-left: 0;
-        margin-right: $btn-bigger-icon-margin-right;
+        margin-right: $btn-bigger-icon-margin;
       }
     }
 
     &.e-small {
       font-size: $btn-bigger-small-font-size;
-      height: $btn-bigger-small-height;
       line-height: $btn-bigger-small-text-line-height;
       padding: $btn-bigger-small-padding;
 
       & .e-btn-icon {
         font-size: $btn-bigger-small-icon-font-size;
-        height: 30px;
-        line-height: 30px;
-        width: 16px;
+        width: $icon-bigger-small-btn-width;
 
         &.e-icon-left {
-          margin-left: $btn-bigger-small-icon-margin-left;
-          width: 32px;
+          margin-left: $btn-bigger-small-icon-margin;
+          width: $btn-bigger-small-icon-width;
         }
 
         &.e-icon-right {
-          margin-right: $btn-bigger-small-icon-margin-right;
-          width: 32px;
+          margin-right: $btn-bigger-small-icon-margin;
+          width: $btn-bigger-small-icon-width;
+        }
+
+        &.e-icon-top {
+          width: auto;
+        }
+
+        &.e-icon-bottom {
+          width: auto;
         }
       }
 
@@ -243,21 +267,20 @@
 
         & .e-btn-icon {
           font-size: $btn-bigger-small-round-font-size;
-          height: 24px;
-          line-height: 28px;
+          line-height: $btn-bigger-small-round-icon-line-height;
           width: auto;
         }
       }
 
       &.e-rtl {
         & .e-icon-right {
-          margin-left: $btn-bigger-small-icon-margin-left;
+          margin-left: $btn-bigger-small-icon-margin;
           margin-right: 0;
         }
 
         & .e-icon-left {
           margin-left: 0;
-          margin-right: $btn-bigger-small-icon-margin-right;
+          margin-right: $btn-bigger-small-icon-margin;
         }
       }
     }

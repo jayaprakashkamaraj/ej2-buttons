@@ -1,9 +1,8 @@
 import { Property, NotifyPropertyChanges, INotifyPropertyChanged, Component } from '@syncfusion/ej2-base';
-import { rippleEffect, EventHandler } from '@syncfusion/ej2-base';
-import { createElement, addClass, removeClass, detach } from '@syncfusion/ej2-base';
+import { addClass, createElement, detach, removeClass, rippleEffect, EventHandler } from '@syncfusion/ej2-base';
 import { ButtonModel } from './button-model';
 import { getTextNode } from '../common/common';
-export type IconPosition = 'left' | 'right';
+export type IconPosition = 'Left' | 'Right';
 
 const cssClassName: CssClassNameT = {
     RTL: 'e-rtl',
@@ -29,11 +28,11 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
     /**
      * Positions the icon before/after the text content in the Button.
      * The possible values are:
-     * * left: The icon will be positioned to the left of the text content.
-     * * right: The icon will be positioned to the right of the text content.
+     * * Left: The icon will be positioned to the left of the text content.
+     * * Right: The icon will be positioned to the right of the text content.
      * @default "left"
      */
-    @Property('left')
+    @Property('Left')
     public iconPosition: IconPosition;
 
     /**
@@ -46,7 +45,7 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
 
     /**
      * Specifies a value that indicates whether the Button is `disabled` or not.
-     * @default false
+     * @default false.
      */
     @Property(false)
     public disabled: boolean;
@@ -60,7 +59,8 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
 
     /**
      * Defines class/multiple classes separated by a space in the Button element. The Button types, styles, and
-     * size can be defined by using this.
+     * size can be defined by using
+     * [`this`](http://ej2.syncfusion.com/documentation/button/howto.html?lang=typescript#create-a-block-button).
      * @default ""
      */
     @Property('')
@@ -118,9 +118,10 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
         }
         if (this.disabled) {
             this.controlStatus(this.disabled);
+        } else {
+            this.wireEvents();
         }
         rippleEffect(this.element, { selector: '.' + cssClassName.BUTTON });
-        this.wireEvents();
     }
 
     private controlStatus(disabled: boolean): void {
@@ -129,19 +130,17 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
 
     private setIconCss(): void {
         if (this.iconCss) {
-            if (!this.element.textContent) {
-                this.element.classList.add(cssClassName.ICONBTN);
-            }
             let span: HTMLElement = createElement('span', { className: 'e-btn-icon ' + this.iconCss });
+            if (!this.element.textContent.trim()) {
+                this.element.classList.add(cssClassName.ICONBTN);
+            } else {
+                span.classList.add('e-icon-' + this.iconPosition.toLowerCase());
+            }
             let node: Node = this.element.childNodes[0];
-            if (node && this.iconPosition === 'left') {
+            if (node && (this.iconPosition === 'Left')) {
                 this.element.insertBefore(span, node);
-                span.classList.add('e-icon-left');
             } else {
                 this.element.appendChild(span);
-                if (this.iconPosition === 'right') {
-                    span.classList.add('e-icon-right');
-                }
             }
         }
     }
@@ -225,14 +224,15 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
                     }
                     break;
                 case 'disabled':
-                    this.controlStatus(this.disabled);
+                    this.controlStatus(newProp.disabled);
+                    this.unWireEvents();
                     break;
                 case 'iconCss':
                     let span: Element = this.element.querySelector('span.e-btn-icon');
                     if (span) {
-                        span.className = 'e-btn-icon ' + this.iconCss;
-                        if (this.element.textContent) {
-                            if (this.iconPosition === 'left') {
+                        span.className = 'e-btn-icon ' + newProp.iconCss;
+                        if (this.element.textContent.trim()) {
+                            if (this.iconPosition === 'Left') {
                                 span.classList.add('e-icon-left');
                             } else {
                                 span.classList.add('e-icon-right');
@@ -264,13 +264,11 @@ export class Button extends Component<HTMLButtonElement> implements INotifyPrope
                     break;
                 case 'content':
                     let node: Node = getTextNode(this.element);
-                    if (node) {
-                        node.textContent  = newProp.content;
-                    } else {
-                        this.element.innerHTML = newProp.content;
+                    if (!node) {
                         this.element.classList.remove(cssClassName.ICONBTN);
-                        this.setIconCss();
                     }
+                    this.element.innerHTML = newProp.content;
+                    this.setIconCss();
                     break;
                 case 'isToggle':
                     if (newProp.isToggle) {

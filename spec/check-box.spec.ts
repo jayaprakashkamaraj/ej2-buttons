@@ -53,7 +53,7 @@ describe('CheckBox', () => {
         });
 
         it('CheckBox with labelPosition', () => {
-            checkbox = new CheckBox({ label: 'CheckBox', labelPosition: 'before' }, '#checkbox');
+            checkbox = new CheckBox({ label: 'CheckBox', labelPosition: 'Before' }, '#checkbox');
             expect(element.parentElement.children[1].nodeName).toEqual('SPAN');
         });
 
@@ -143,8 +143,8 @@ describe('CheckBox', () => {
         });
 
         it('CheckBox with label position', () => {
-            checkbox = new CheckBox({ labelPosition: 'before' }, '#checkbox');
-            expect(checkbox.labelPosition).toEqual('before');
+            checkbox = new CheckBox({ labelPosition: 'Before' }, '#checkbox');
+            expect(checkbox.labelPosition).toEqual('Before');
         });
 
         it('CheckBox with indeterminate state', () => {
@@ -231,10 +231,10 @@ describe('CheckBox', () => {
 
         it('CheckBox with labelPosition', () => {
             checkbox = new CheckBox({ label: 'CheckBox' }, '#checkbox');
-            checkbox.labelPosition = 'before';
+            checkbox.labelPosition = 'Before';
             checkbox.dataBind();
             expect(element.parentElement.children[1].nodeName).toEqual('SPAN');
-            checkbox.labelPosition = 'after';
+            checkbox.labelPosition = 'After';
             checkbox.dataBind();
             expect(element.parentElement.children[2].nodeName).toEqual('SPAN');
         });
@@ -296,9 +296,6 @@ describe('CheckBox', () => {
         it('Keyboard Event', () => {
             checkbox = new CheckBox({}, '#checkbox');
             element.parentElement.parentElement.focus();
-            checkbox.keyActionHandler({ action: 'space', preventDefault: (): void => { /** No Code */ } });
-            expect(element.parentElement.children[1].classList.contains('e-check')).toEqual(true);
-            checkbox.keyActionHandler({ action: 'Enter' });
             checkbox.keyDownHandler();
             checkbox.focusHandler();
             expect(element.parentElement.parentElement.classList.contains('e-focus')).toEqual(true);
@@ -309,14 +306,14 @@ describe('CheckBox', () => {
         });
 
         it('Pre render method', () => {
-            document.body.appendChild(createElement('EJ-CHECKBOX', { id: 'ngcheckbox', attrs: { label: 'Checkbox' } }));
+            document.body.appendChild(createElement('EJS-CHECKBOX', { id: 'ngcheckbox', attrs: { label: 'Checkbox' } }));
             checkbox = new CheckBox({}, '#ngcheckbox');
-            expect(checkbox.element.parentElement.parentElement.tagName).toEqual('EJ-CHECKBOX');
+            expect(checkbox.element.parentElement.parentElement.tagName).toEqual('EJS-CHECKBOX');
             expect(checkbox.element.parentElement.children[0].tagName).toEqual('INPUT');
             expect(checkbox.element.parentElement.children[1].classList.contains('e-frame')).toEqual(true);
             expect(checkbox.element.getAttribute('label')).toEqual(null);
             checkbox.destroy();
-            expect((document.getElementById('ngcheckbox')).tagName).toBe('EJ-CHECKBOX');
+            expect((document.getElementById('ngcheckbox')).tagName).toBe('EJS-CHECKBOX');
             checkbox = new CheckBox({}, document.body.appendChild(createElement('input')) as HTMLInputElement);
             expect(checkbox.element.id).toContain('e-checkbox');
             expect(checkbox.element.type).toEqual('checkbox');

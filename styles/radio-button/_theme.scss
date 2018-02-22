@@ -69,6 +69,11 @@
         & .e-ripple-container {
           background-color: $checked-ripple-bgcolor;
         }
+
+        &::before {
+          outline: $focus-outline;
+          outline-offset: $focus-outline-offset;
+        }
       }
     }
 
@@ -76,11 +81,11 @@
       &:focus {
         +label {
           &::before {
-            border-color: $hover-check-border-color;
+            border-color: $focus-check-border-color;
           }
 
           &::after {
-            background-color: $hover-check-bg-color;
+            background-color: $focus-check-bg-color;
           }
         }
       }

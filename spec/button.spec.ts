@@ -54,7 +54,7 @@ describe('Button', () => {
 
         it('Text and Icon button testing', () => {
             element.textContent = 'Button';
-            button = new Button({ iconCss: 'iconcss', iconPosition: 'right' });
+            button = new Button({ iconCss: 'iconcss', iconPosition: 'Right' });
             button.appendTo('#button');
             expect(element.textContent).toEqual('Button');
             expect(element.children[0].classList.contains('iconcss')).toEqual(true);
@@ -83,7 +83,7 @@ describe('Button', () => {
             expect(element.childNodes[0].nodeName).toEqual('SPAN');
             expect(element.textContent).toEqual('Button');
             button.destroy();
-            button = new Button({ content: '<div>Button</div>', iconCss: 'e-icons e-add-icon', iconPosition: 'right' }, '#button');
+            button = new Button({ content: '<div>Button</div>', iconCss: 'e-icons e-add-icon', iconPosition: 'Right' }, '#button');
             expect(element.childNodes[0].nodeName).toEqual('DIV');
             expect(element.childNodes[1].nodeName).toEqual('SPAN');
             expect(element.textContent).toEqual('Button');
@@ -126,15 +126,15 @@ describe('Button', () => {
             button = new Button({ iconCss: 'iconcss' });
             button.appendTo('#button');
             expect(button.iconCss).toEqual('iconcss');
-            expect(button.iconPosition).toEqual('left');
+            expect(button.iconPosition).toEqual('Left');
         });
 
         it('Text and Icon button testing', () => {
             element.textContent = 'Button';
-            button = new Button({ iconCss: 'iconcss', iconPosition: 'right' });
+            button = new Button({ iconCss: 'iconcss', iconPosition: 'Right' });
             button.appendTo('#button');
             expect(button.iconCss).toEqual('iconcss');
-            expect(button.iconPosition).toEqual('right');
+            expect(button.iconPosition).toEqual('Right');
         });
 
         it('RTL testing', () => {
@@ -188,7 +188,7 @@ describe('Button', () => {
         });
 
         it('IconCss in onPropertyChanged', () => {
-            button = new Button({ iconCss: 'icon' });
+            button = new Button({ iconCss: 'icon', content: 'iconcss' });
             button.appendTo('#button');
             button.iconCss = 'iconcss';
             button.dataBind();
@@ -198,7 +198,7 @@ describe('Button', () => {
             button.dataBind();
             expect(element.children[0].classList.contains('iconclass')).toEqual(true);
             button.destroy();
-            button.iconPosition = 'right';
+            button.iconPosition = 'Right';
             button.iconCss = 'iconcss';
             button.dataBind();
             expect(element.children[0].classList.contains('iconcss')).toEqual(true);
@@ -208,17 +208,19 @@ describe('Button', () => {
             element.textContent = 'Button';
             button = new Button({ iconCss: 'iconcss' });
             button.appendTo('#button');
-            button.iconPosition = 'right';
+            button.iconCss = 'icon-right';
+            button.iconPosition = 'Right';
             button.dataBind();
             expect(element.textContent).toEqual('Button');
-            expect(element.children[0].classList.contains('iconcss')).toEqual(true);
+            expect(element.children[0].classList.contains('icon-right')).toEqual(true);
+            expect(element.children[0].classList.contains('e-icon-right')).toEqual(true);
         });
 
         it('IconPosition left in onPropertyChanged', () => {
             element.textContent = 'Button';
-            button = new Button({ iconCss: 'iconcss', iconPosition: 'right' });
+            button = new Button({ iconCss: 'iconcss', iconPosition: 'Right' });
             button.appendTo('#button');
-            button.iconPosition = 'left';
+            button.iconPosition = 'Left';
             button.dataBind();
             expect(element.children[0].classList.contains('iconcss')).toEqual(true);
             expect(element.textContent).toEqual('Button');
@@ -228,7 +230,7 @@ describe('Button', () => {
             button = new Button({ iconCss: 'iconcss' });
             button.appendTo('#button');
             detach(button.element.getElementsByTagName('span')[0]);
-            button.iconPosition = 'right';
+            button.iconPosition = 'Right';
             button.dataBind();
             expect(element.children[0].classList.contains('iconcss')).toEqual(true);
             expect(element.textContent).toEqual('Button');
@@ -265,11 +267,12 @@ describe('Button', () => {
             button.dataBind();
             expect(element.textContent).toEqual('play');
             button.iconCss = 'e-icons e-add-icon';
-            button.iconPosition = 'left';
+            button.iconPosition = 'Left';
             button.dataBind();
             expect(element.childNodes[0].nodeName).toEqual('SPAN');
             expect(element.childNodes[1].nodeName).toEqual('#text');
             expect(element.textContent).toEqual('play');
+            button.element.innerHTML = '';
             button.content = 'Content';
             button.dataBind();
             expect(element.childNodes[0].nodeName).toEqual('SPAN');

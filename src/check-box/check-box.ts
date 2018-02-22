@@ -1,10 +1,10 @@
 import { Component, INotifyPropertyChanged , NotifyPropertyChanges, Property } from '@syncfusion/ej2-base';
-import { BaseEventArgs, EmitType, Event, EventHandler, KeyboardEventArgs, KeyboardEvents } from '@syncfusion/ej2-base';
+import { BaseEventArgs, EmitType, Event, EventHandler, KeyboardEvents } from '@syncfusion/ej2-base';
 import { addClass, createElement, detach, getUniqueID, isRippleEnabled, removeClass, rippleEffect } from '@syncfusion/ej2-base';
 import { CheckBoxModel } from './check-box-model';
 import { wrapperInitialize, rippleMouseHandler } from './../common/common';
 
-export type LabelPosition = 'after' | 'before';
+export type LabelPosition = 'After' | 'Before';
 
 const CHECK: string = 'e-check';
 const DISABLED: string = 'e-checkbox-disabled';
@@ -83,11 +83,11 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
     /**
      * Positions label `before`/`after` the CheckBox.
      * The possible values are:
-     * * before - The label is positioned to left of the CheckBox.
-     * * after - The label is positioned to right of the CheckBox.
-     * @default 'after'
+     * * Before - The label is positioned to left of the CheckBox.
+     * * After - The label is positioned to right of the CheckBox.
+     * @default 'After'
      */
-    @Property('after')
+    @Property('After')
     public labelPosition: LabelPosition;
 
     /**
@@ -267,7 +267,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
         label.appendChild(frameSpan);
         if (isRippleEnabled) {
             let rippleSpan: HTMLElement = createElement('span', { className: RIPPLE });
-            if (this.labelPosition === 'before') {
+            if (this.labelPosition === 'Before') {
                 label.appendChild(rippleSpan);
             }else {
                 label.insertBefore(rippleSpan, frameSpan);
@@ -276,14 +276,6 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
         }
         if (this.label) {
             this.setText(this.label);
-        }
-    }
-
-    private keyActionHandler(e: KeyboardEventArgs): void {
-        if (e.action === 'space') {
-            e.preventDefault();
-            this.clickHandler(e);
-            this.focusHandler();
         }
     }
 
@@ -352,7 +344,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
                     let label: Element = wrapper.getElementsByClassName(LABEL)[0];
                     let labelWrap: Element = wrapper.getElementsByTagName('label')[0];
                     detach(label);
-                    if (newProp.labelPosition === 'after') {
+                    if (newProp.labelPosition === 'After') {
                         labelWrap.appendChild(label);
                     } else {
                         labelWrap.insertBefore(label, wrapper.getElementsByClassName(FRAME)[0]);
@@ -375,7 +367,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
     protected preRender(): void {
         let element: HTMLInputElement = this.element;
         this.tagName = this.element.tagName;
-        element = wrapperInitialize('EJ-CHECKBOX', 'checkbox', element, WRAPPER);
+        element = wrapperInitialize('EJS-CHECKBOX', 'checkbox', element, WRAPPER);
         this.element = element;
         if (this.element.getAttribute('type') !== 'checkbox') {
             this.element.setAttribute('type', 'checkbox');
@@ -411,7 +403,7 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
         } else {
             label = createElement('span', { className: LABEL, innerHTML: text });
             let labelWrap: Element = this.getWrapper().getElementsByTagName('label')[0];
-            if (this.labelPosition === 'before') {
+            if (this.labelPosition === 'Before') {
                 labelWrap.insertBefore(label, this.getWrapper().getElementsByClassName(FRAME)[0]);
             } else {
                 labelWrap.appendChild(label);
@@ -422,7 +414,6 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
     protected unWireEvents(): void {
         let wrapper: Element = this.getWrapper();
         EventHandler.remove(this.element, 'click', this.clickHandler);
-        this.keyboardModule.destroy();
         EventHandler.remove(document, 'keydown', this.keyDownHandler);
         EventHandler.remove(wrapper, 'mousedown', this.mouseDownHandler);
         EventHandler.remove(this.element, 'focus', this.focusHandler);
@@ -435,13 +426,6 @@ export class CheckBox extends Component<HTMLInputElement> implements INotifyProp
     protected wireEvents(): void {
         let wrapper: Element = this.getWrapper();
         EventHandler.add(this.element, 'click', this.clickHandler, this);
-        this.keyboardModule = new KeyboardEvents(
-            wrapper as HTMLElement,
-            {
-                eventName: 'keyup',
-                keyAction: this.keyActionHandler.bind(this),
-                keyConfigs: { space: 'space' }
-            });
         EventHandler.add(document, 'keydown', this.keyDownHandler, this);
         EventHandler.add(wrapper, 'mousedown', this.mouseDownHandler, this);
         EventHandler.add(this.element, 'focus', this.focusHandler, this);
