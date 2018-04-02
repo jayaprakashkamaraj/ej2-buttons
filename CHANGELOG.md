@@ -2,7 +2,15 @@
 
 ## [Unreleased]
 
-## 16.1.24 (2018-02-22)
+## 15.4.30 (2018-04-02)
+
+### CheckBox
+
+#### Bug Fixes
+
+- Style compatibility issue fixed.
+
+## 16.1.24-preview (2018-02-22)
 
 ### Common
 

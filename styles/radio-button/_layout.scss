@@ -1,7 +1,7 @@
 @include export-module('radiobutton-layout') {
   /*! radiobutton layout */
 
-  #{&}.e-radio-wrapper {
+  .e-radio-wrapper {
     display: inline-block;
     line-height: 1;
   }
@@ -22,6 +22,7 @@
       margin: 0;
       position: relative;
       user-select: none;
+      vertical-align: middle;
       white-space: nowrap;
 
       & .e-label {
@@ -198,7 +199,7 @@
     }
   }
 
-  &.e-bigger #{&}.e-radio+label,
+  .e-bigger #{&}.e-radio+label,
   #{&}.e-radio+label.e-bigger {
     height: $bigger-height;
 

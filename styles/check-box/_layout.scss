@@ -1,6 +1,6 @@
-﻿@include export-module('checkbox-layout') {
+@include export-module('checkbox-layout') {
   /*! checkbox layout */
-  #{&}.e-checkbox-wrapper,
+  .e-checkbox-wrapper,
   .e-css.e-checkbox-wrapper {
     cursor: pointer;
     display: inline-block;
@@ -45,7 +45,7 @@
         font-weight: normal;
         line-height: $height;
         user-select: none;
-        vertical-align: text-top;
+        vertical-align: middle;
         white-space: normal;
       }
 
@@ -71,7 +71,7 @@
         line-height: $lineheight;
         padding: $padding;
         text-align: center;
-        vertical-align: text-top;
+        vertical-align: middle;
         width: $width;
 
         +.e-label {
@@ -178,10 +178,10 @@
     }
   }
 
-  &.e-bigger #{&}.e-checkbox-wrapper,
-  &.e-bigger#{&}.e-checkbox-wrapper,
-  &.e-bigger .e-css.e-checkbox-wrapper,
-  &.e-bigger.e-css.e-checkbox-wrapper {
+  .e-bigger .e-checkbox-wrapper,
+  .e-bigger.e-checkbox-wrapper,
+  .e-bigger .e-css.e-checkbox-wrapper,
+  .e-bigger.e-css.e-checkbox-wrapper {
     & .e-frame {
       height: $bigger-height;
       line-height: $bigger-lineheight;
