@@ -199,7 +199,7 @@
     }
   }
 
-  .e-bigger #{&}.e-radio+label,
+  &.e-bigger #{&}.e-radio+label,
   #{&}.e-radio+label.e-bigger {
     height: $bigger-height;
 
